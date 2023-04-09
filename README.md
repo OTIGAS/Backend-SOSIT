@@ -1,4 +1,4 @@
-# APP - Gympass style app
+# APP - SOSIT
 
 ## RF (Requisitos funcionais)
 
