@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/prisma';
 import { Prisma } from '@prisma/client';
-import { CompaniesRepository } from '../company-repository';
+import { CompaniesRepository } from '../companies-repository';
 
 export class PrismaCompaniesRepository implements CompaniesRepository {
 	async create(data: Prisma.CompanyCreateInput) {

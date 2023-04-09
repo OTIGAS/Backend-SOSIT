@@ -14,13 +14,13 @@ model User {
   senha_hash String
   cpf        String @unique
 
-  telefone   String?
-  cep        String?
-  estado     String?
-  cidade     String?
-  rua        String?
-  numero     String?
-  nascimento String?
+  telefone   String
+  cep        String
+  estado     String
+  cidade     String
+  rua        String
+  numero     String
+  nascimento String
 
   criado_em DateTime @default(now())
 
@@ -37,17 +37,17 @@ model Company {
   senha_hash    String
   cnpj          String @unique
 
-  sobre         String?
-  img_perfil    String?
-  link_google   String?
-  telefone      String?
-  email_contato String?
-  nome_contato  String?
-  cep           String?
-  estado        String?
-  cidade        String?
-  rua           String?
-  numero        String?
+  sobre         String
+  img_perfil    String
+  link_google   String
+  telefone      String
+  email_contato String
+  nome_contato  String
+  cep           String
+  estado        String
+  cidade        String
+  rua           String
+  numero        String
 
   criado_em DateTime @default(now())
 
@@ -60,7 +60,7 @@ model Schedule {
   id          String   @id @default(uuid())
   nome        String
   servico     String
-  descricao   String?
+  descricao   String
   dias_semana String[] @default(["seg", "ter", "qua", "qui", "sex", "sab"])
 
   criado_em DateTime @default(now())
