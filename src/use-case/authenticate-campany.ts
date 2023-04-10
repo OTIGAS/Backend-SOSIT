@@ -12,7 +12,7 @@ interface AuthenticateCompanyUseCaseResponse {
     company: Company;
 }
 
-export class AuthenticationCompanyUseCase {
+export class AuthenticateCompanyUseCase {
     constructor(private companiesRepository: CompaniesRepository) { }
 
     async execute({
