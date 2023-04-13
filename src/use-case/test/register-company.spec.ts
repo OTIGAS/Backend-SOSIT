@@ -12,7 +12,7 @@ beforeEach(() => {
     registerCompanyUseCase = new RegisterCompanyUseCase(companyRepository)
 })
 
-describe("Register Use Case", () => {
+describe("Register Comapny", () => {
     it("should be able to register", async () => {
 
         const { company } = await registerCompanyUseCase.execute({

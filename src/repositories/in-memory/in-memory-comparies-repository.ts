@@ -2,6 +2,7 @@ import { Prisma, Company } from "@prisma/client";
 import { CompaniesRepository } from "../companies-repository";
 
 export class InMemoryCompaniesRepository implements CompaniesRepository {
+
     public items: Company[] = []
 
     async create(data: Prisma.CompanyCreateInput): Promise<Company> {
@@ -44,6 +45,16 @@ export class InMemoryCompaniesRepository implements CompaniesRepository {
 
     async findByEmail(email: string): Promise<Company | null> {
         const company = this.items.find((item) => item.email === email)
+
+        if (!company) {
+            return null;
+        }
+
+        return company
+    }
+
+    async findById(id: string): Promise<Company | null> {
+        const company = this.items.find((item) => item.id === id)
 
         if (!company) {
             return null;

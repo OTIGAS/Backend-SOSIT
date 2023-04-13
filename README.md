@@ -5,29 +5,25 @@
 - [x] Deve ser possível se cadastrar como usuário;
 - [x] Deve ser possível se cadastrar como empresa;
 
-- [] Deve ser possível se autenticar como usuário;
-- [] Deve ser possível se autenticar como empresa;
+- [x] Deve ser possível se autenticar como usuário;
+- [x] Deve ser possível se autenticar como empresa;
 
-- [] Deve ser possível obter as informações da empresa como usuário;
-- [] Deve ser possível obter as informações do usuário como empresa;
+- [x] Deve ser possível obter as informações da empresa;
+- [x] Deve ser possível obter as informações do usuário;
 
-- [] Deve ser possível excluir o cadastro do usuário como usuário;
-- [] Deve ser possível excluir o cadastro do empresa como empresa;
+- [] Deve ser possível excluir o cadastro do usuário;
+- [] Deve ser possível excluir o cadastro do empresa;
 
-- [] Deve ser possível cadastrar as agendas como empresa;
-- [] Deve ser possível obter as informações das proprias agendas como empresa;
+- [] Deve ser possível cadastrar a agenda;
+- [] Deve ser possível obter as informações da agenda;
 
-- [] Deve ser possível pesquisar agendas por serviços como usuário;
-- [] Deve ser possível obter as informações das agendas como usuário;
+- [] Deve ser possível pesquisar a agenda por serviços;
 
-- [] Deve ser possível marcar compromissos nas proprias agendas como empresa;
-- [] Deve ser possível marcar um compromisso na agenda como empresa ou usuário;
+- [] Deve ser possível marcar compromissos na agenda;
 
-- [] Deve ser possível desmarcar compromissos nas proprias agendas como empresa;
-- [] Deve ser possível desmarcar compromissos que partícipe como usuário;
+- [] Deve ser possível desmarcar compromissos na agenda;
 
-- [] Deve ser possível obter o historioco de compromissos que partícipe como usuário;
-- [] Deve ser possível obter o historioco de compromissos das prorprias agendas como empresa;
+- [] Deve ser possível obter o historioco de compromissos;
 
 ## RN (Regras de negócio)
 

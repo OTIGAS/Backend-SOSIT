@@ -1,9 +1,7 @@
 import { expect, describe, it, beforeEach } from "vitest"
-import { RegisterCompanyUseCase } from "../register-company"
-import { compare, hash } from "bcryptjs"
+import { hash } from "bcryptjs"
 import { AuthenticateCompanyUseCase } from "../authenticate-campany"
 import { InMemoryCompaniesRepository } from "@/repositories/in-memory/in-memory-comparies-repository"
-import { CompanyAlreadyExistsError } from "../errors/company-already-exists"
 import { InvalidCredencialsError } from "../errors/invalid-credencials-error"
 
 let companyRepository: InMemoryCompaniesRepository
@@ -14,7 +12,7 @@ beforeEach(() => {
     authenticateCompanyUseCase = new AuthenticateCompanyUseCase(companyRepository)
 })
 
-describe("Register Use Case", () => {
+describe("Authenticate Company", () => {
 
     it("should be able to register", async () => {
 
