@@ -1,4 +1,4 @@
-import { expect, describe, it } from "vitest"
+import { expect, describe, it, beforeEach } from "vitest"
 import { RegisterCompanyUseCase } from "../register-company"
 import { compare, hash } from "bcryptjs"
 import { AuthenticateCompanyUseCase } from "../authenticate-campany"
@@ -6,14 +6,20 @@ import { InMemoryCompaniesRepository } from "@/repositories/in-memory/in-memory-
 import { CompanyAlreadyExistsError } from "../errors/company-already-exists"
 import { InvalidCredencialsError } from "../errors/invalid-credencials-error"
 
+let companyRepository: InMemoryCompaniesRepository
+let authenticateCompanyUseCase: AuthenticateCompanyUseCase
+
+beforeEach(() => {
+    companyRepository = new InMemoryCompaniesRepository()
+    authenticateCompanyUseCase = new AuthenticateCompanyUseCase(companyRepository)
+})
 
 describe("Register Use Case", () => {
 
     it("should be able to register", async () => {
-        const userRepository = new InMemoryCompaniesRepository()
-        const authenticateCompanyUseCase = new AuthenticateCompanyUseCase(userRepository)
 
-        await userRepository.create({
+
+        await companyRepository.create({
             nome_fantasia: "Nome Fantasia",
             razao_social: "Razão Social",
             email: "email@gmail.com",
@@ -41,8 +47,7 @@ describe("Register Use Case", () => {
     })
 
     it("should be able to authenticate with wrong email", async () => {
-        const userRepository = new InMemoryCompaniesRepository()
-        const authenticateCompanyUseCase = new AuthenticateCompanyUseCase(userRepository)
+
 
         expect(() =>
             authenticateCompanyUseCase.execute({
@@ -53,10 +58,9 @@ describe("Register Use Case", () => {
     })
 
     it("should be able to authenticate with wrong password", async () => {
-        const userRepository = new InMemoryCompaniesRepository()
-        const authenticateCompanyUseCase = new AuthenticateCompanyUseCase(userRepository)
 
-        await userRepository.create({
+
+        await companyRepository.create({
             nome_fantasia: "Nome Fantasia",
             razao_social: "Razão Social",
             email: "email@gmail.com",

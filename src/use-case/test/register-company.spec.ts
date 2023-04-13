@@ -1,14 +1,19 @@
-import { expect, describe, it } from "vitest"
+import { expect, describe, it, beforeEach } from "vitest"
 import { RegisterCompanyUseCase } from "../register-company"
 import { compare } from "bcryptjs"
 import { InMemoryCompaniesRepository } from "@/repositories/in-memory/in-memory-comparies-repository"
 import { CompanyAlreadyExistsError } from "../errors/company-already-exists"
 
+let companyRepository: InMemoryCompaniesRepository
+let registerCompanyUseCase: RegisterCompanyUseCase
+
+beforeEach(() => {
+    companyRepository = new InMemoryCompaniesRepository()
+    registerCompanyUseCase = new RegisterCompanyUseCase(companyRepository)
+})
 
 describe("Register Use Case", () => {
     it("should be able to register", async () => {
-        const userRepository = new InMemoryCompaniesRepository()
-        const registerCompanyUseCase = new RegisterCompanyUseCase(userRepository)
 
         const { company } = await registerCompanyUseCase.execute({
             nome_fantasia: "Nome Fantasia",
@@ -33,8 +38,6 @@ describe("Register Use Case", () => {
     })
 
     it("should hash company password upon registration", async () => {
-        const userRepository = new InMemoryCompaniesRepository()
-        const registerCompanyUseCase = new RegisterCompanyUseCase(userRepository)
 
         const { company } = await registerCompanyUseCase.execute({
             nome_fantasia: "Nome Fantasia",
@@ -61,8 +64,6 @@ describe("Register Use Case", () => {
     })
 
     it("should not be able to register with same email twice", async () => {
-        const userRepository = new InMemoryCompaniesRepository()
-        const registerCompanyUseCase = new RegisterCompanyUseCase(userRepository)
 
         const email = "email@gmail.com"
 
@@ -108,8 +109,6 @@ describe("Register Use Case", () => {
     })
 
     it("should not be able to register with same cnpj twice", async () => {
-        const userRepository = new InMemoryCompaniesRepository()
-        const registerCompanyUseCase = new RegisterCompanyUseCase(userRepository)
 
         const cnpj = "00.000.000/0000-00"
 

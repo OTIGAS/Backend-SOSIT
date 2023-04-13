@@ -1,8 +1,8 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
-import { RegisterCompanyUseCase } from '@/use-case/register-company';
-import { PrismaCompaniesRepository } from '@/repositories/prisma/prisma-company-repository';
 import { CompanyAlreadyExistsError } from '@/use-case/errors/company-already-exists';
+import { makeRegisterCompanyUseCase } from '../../use-case/factories/make-register-company-use-case';
+
 
 export async function registerCompany(request: FastifyRequest, response: FastifyReply) {
 	const companyRegisteBodySchema = z.object({
@@ -44,8 +44,7 @@ export async function registerCompany(request: FastifyRequest, response: Fastify
 	} = companyRegisteBodySchema.parse(request.body);
 
 	try {
-		const companiesRepository = new PrismaCompaniesRepository();
-		const registerCompanyUseCase = new RegisterCompanyUseCase(companiesRepository);
+		const registerCompanyUseCase = makeRegisterCompanyUseCase()
 
 		await registerCompanyUseCase.execute({
 			nome_fantasia,
