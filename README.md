@@ -14,7 +14,7 @@
 - [] Deve ser possível excluir o cadastro do usuário;
 - [] Deve ser possível excluir o cadastro do empresa;
 
-- [] Deve ser possível cadastrar a agenda;
+- [x] Deve ser possível cadastrar a agenda;
 - [] Deve ser possível obter as informações da agenda;
 
 - [] Deve ser possível pesquisar a agenda por serviços;

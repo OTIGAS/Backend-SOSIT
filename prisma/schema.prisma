@@ -58,10 +58,10 @@ model Company {
 
 model Schedule {
   id          String   @id @default(uuid())
-  nome        String
+  nome        String   @unique
   servico     String
   descricao   String
-  dias_semana String[] @default(["seg", "ter", "qua", "qui", "sex", "sab"])
+  dias_semana String[]
 
   criado_em DateTime @default(now())
 
