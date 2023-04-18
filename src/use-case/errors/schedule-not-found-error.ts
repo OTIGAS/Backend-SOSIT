@@ -1,5 +1,5 @@
 export class ScheduleNotFoundError extends Error {
-    constructor() {
-        super('Agenda não encontrada.')
-    }
+	constructor() {
+		super('Agenda não encontrada.');
+	}
 }

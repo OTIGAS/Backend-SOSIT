@@ -1,5 +1,5 @@
-import { Schedule } from "@prisma/client";
-import { SchedulesRepository } from "@/repositories/schedules-repository";
+import { Schedule } from '@prisma/client';
+import { SchedulesRepository } from '@/repositories/schedules-repository';
 
 interface ScheduleUseCaseRequest {
 	nome: string;
@@ -27,10 +27,10 @@ export class RegisterScheduleUseCase {
 			descricao: descricao,
 			dias_semana: dias_semana,
 			company_id: companyId
-		})
+		});
 
 		return {
 			schedule
-		}
+		};
 	}
 }

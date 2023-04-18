@@ -1,7 +1,7 @@
-import { UsersRepository } from "@/repositories/users-repository";
-import { InvalidCredencialsError } from "./errors/invalid-credencials-error";
-import { compare } from "bcryptjs";
-import { User } from "@prisma/client";
+import { UsersRepository } from '@/repositories/users-repository';
+import { InvalidCredencialsError } from './errors/invalid-credencials-error';
+import { compare } from 'bcryptjs';
+import { User } from '@prisma/client';
 
 interface AuthenticateUserUseCaseRequest {
     email: string;
@@ -13,25 +13,25 @@ interface AuthenticateUserUseCaseResponse {
 }
 
 export class AuthenticateUserUseCase {
-    constructor(private usersRepository: UsersRepository) { }
+	constructor(private usersRepository: UsersRepository) { }
 
-    async execute({
-        email, senha
-    }: AuthenticateUserUseCaseRequest): Promise<AuthenticateUserUseCaseResponse> {
-        const user = await this.usersRepository.findByEmail(email);
+	async execute({
+		email, senha
+	}: AuthenticateUserUseCaseRequest): Promise<AuthenticateUserUseCaseResponse> {
+		const user = await this.usersRepository.findByEmail(email);
 
-        if (!user) {
-            throw new InvalidCredencialsError()
-        }
+		if (!user) {
+			throw new InvalidCredencialsError();
+		}
 
-        const doesPasswordMatches = await compare(senha, user.senha_hash)
+		const doesPasswordMatches = await compare(senha, user.senha_hash);
 
-        if (!doesPasswordMatches) {
-            throw new InvalidCredencialsError()
-        }
+		if (!doesPasswordMatches) {
+			throw new InvalidCredencialsError();
+		}
 
-        return {
-            user
-        }
-    }
+		return {
+			user
+		};
+	}
 }

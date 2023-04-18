@@ -29,7 +29,7 @@ export async function authenticateCompany(request: FastifyRequest, response: Fas
 		else {
 
 		}
-		throw err
+		throw err;
 	}
 
 	return response.status(201).send();

@@ -1,4 +1,4 @@
-import { Prisma, Schedule } from "@prisma/client";
+import { Prisma, Schedule } from '@prisma/client';
 
 export interface SchedulesRepository {
     create(data: Prisma.ScheduleUncheckedCreateInput): Promise<Schedule>

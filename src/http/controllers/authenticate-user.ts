@@ -29,7 +29,7 @@ export async function authenticateUser(request: FastifyRequest, response: Fastif
 		else {
 
 		}
-		throw err
+		throw err;
 	}
 
 	return response.status(201).send();

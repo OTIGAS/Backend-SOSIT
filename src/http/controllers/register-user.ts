@@ -33,7 +33,7 @@ export async function registerUser(request: FastifyRequest, response: FastifyRep
 	} = userRegisterBodySchema.parse(request.body);
 
 	try {
-		const registerUserUseCase = makeRegisterUserUseCase()
+		const registerUserUseCase = makeRegisterUserUseCase();
 
 		await registerUserUseCase.execute({
 			nome,
@@ -57,7 +57,7 @@ export async function registerUser(request: FastifyRequest, response: FastifyRep
 		else {
 
 		}
-		throw err
+		throw err;
 	}
 
 	return response.status(201).send();

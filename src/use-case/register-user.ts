@@ -60,6 +60,6 @@ export class RegisterUserUseCase {
 			nascimento
 		});
 
-		return { user }
+		return { user };
 	}
 }

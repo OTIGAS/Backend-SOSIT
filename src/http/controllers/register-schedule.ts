@@ -21,7 +21,7 @@ export async function registerSchedule(request: FastifyRequest, response: Fastif
 	} = scheduleRegisterBodySchema.parse(request.body);
 
 	try {
-		const registerScheduleUseCase = makeRegisterScheduleUseCase()
+		const registerScheduleUseCase = makeRegisterScheduleUseCase();
 
 		await registerScheduleUseCase.execute({
 			nome,
@@ -40,7 +40,7 @@ export async function registerSchedule(request: FastifyRequest, response: Fastif
 		else {
 
 		}
-		throw err
+		throw err;
 	}
 
 	return response.status(201).send();

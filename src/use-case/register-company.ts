@@ -27,54 +27,54 @@ interface RegisterCompanyUseCaseResponse {
 }
 
 export class RegisterCompanyUseCase {
-    constructor(private companyRepository: CompaniesRepository) { }
+	constructor(private companyRepository: CompaniesRepository) { }
 
-    async execute({
-        nome_fantasia,
-        razao_social,
-        email,
-        senha,
-        cnpj,
-        sobre,
-        img_perfil,
-        link_google,
-        telefone,
-        email_contato,
-        nome_contato,
-        cep,
-        estado,
-        cidade,
-        rua,
-        numero
-    }: RegisterCompanyUseCaseRequest): Promise<RegisterCompanyUseCaseResponse> {
+	async execute({
+		nome_fantasia,
+		razao_social,
+		email,
+		senha,
+		cnpj,
+		sobre,
+		img_perfil,
+		link_google,
+		telefone,
+		email_contato,
+		nome_contato,
+		cep,
+		estado,
+		cidade,
+		rua,
+		numero
+	}: RegisterCompanyUseCaseRequest): Promise<RegisterCompanyUseCaseResponse> {
 
-        const senha_hash = await hash(senha, 6);
+		const senha_hash = await hash(senha, 6);
 
-        const companyWithSameCNPJ = await this.companyRepository.findByCNPJ(cnpj);
+		const companyWithSameCNPJ = await this.companyRepository.findByCNPJ(cnpj);
 
-        if (companyWithSameCNPJ) {
-            throw new CompanyAlreadyExistsError();
-        }
+		if (companyWithSameCNPJ) {
+			throw new CompanyAlreadyExistsError();
+		}
 
-        const company = await this.companyRepository.create({
-            nome_fantasia,
-            razao_social,
-            email,
-            senha_hash,
-            cnpj,
-            sobre,
-            img_perfil,
-            link_google,
-            telefone,
-            email_contato,
-            nome_contato,
-            cep,
-            estado,
-            cidade,
-            rua,
-            numero
-        });
+		const company = await this.companyRepository.create({
+			nome_fantasia,
+			razao_social,
+			email,
+			senha_hash,
+			cnpj,
+			sobre,
+			img_perfil,
+			link_google,
+			telefone,
+			email_contato,
+			nome_contato,
+			cep,
+			estado,
+			cidade,
+			rua,
+			numero
+		});
 
-        return { company }
-    }
+		return { company };
+	}
 }

@@ -44,7 +44,7 @@ export async function registerCompany(request: FastifyRequest, response: Fastify
 	} = companyRegisteBodySchema.parse(request.body);
 
 	try {
-		const registerCompanyUseCase = makeRegisterCompanyUseCase()
+		const registerCompanyUseCase = makeRegisterCompanyUseCase();
 
 		await registerCompanyUseCase.execute({
 			nome_fantasia,
