@@ -22,16 +22,6 @@ export class InMemorySchedulesRepository implements SchedulesRepository {
         return schedule
     }
 
-    async findByName(name: string): Promise<Schedule | null> {
-        const schedule = this.items.find((item) => item.nome === name)
-
-        if (!schedule) {
-            return null;
-        }
-
-        return schedule
-    }
-
     async findByService(service: string): Promise<Schedule[] | null> {
         const schedules = this.items.filter((item) => item.servico === service);
 
@@ -40,6 +30,16 @@ export class InMemorySchedulesRepository implements SchedulesRepository {
         }
 
         return schedules;
+    }
+
+    async findById(id: string): Promise<Schedule | null> {
+        const schedule = this.items.find((item) => item.id === id)
+
+        if (!schedule) {
+            return null;
+        }
+
+        return schedule
     }
 
 }

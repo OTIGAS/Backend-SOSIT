@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 import { makeRegisterScheduleUseCase } from '@/use-case/factories/make-register-schedule-use-case';
-import { ScheduleAlreadyExistsError } from '@/use-case/errors/schedule-already-exists';
+import { ScheduleNotFoundError } from '@/use-case/errors/schedule-not-found-error';
 
 export async function registerSchedule(request: FastifyRequest, response: FastifyReply) {
 	const scheduleRegisterBodySchema = z.object({
@@ -30,8 +30,9 @@ export async function registerSchedule(request: FastifyRequest, response: Fastif
 			dias_semana,
 			companyId,
 		});
+
 	} catch (err) {
-		if (err instanceof ScheduleAlreadyExistsError) {
+		if (err instanceof ScheduleNotFoundError) {
 			return response.status(409).send({
 				message: err.message
 			});

@@ -11,20 +11,18 @@ export class PrismaSchedulesRepository implements SchedulesRepository {
 		return schedule;
 	}
 
-	async findByName(name: string) {
-		const schedule = await prisma.schedule.findUnique({
-			where: {
-				nome: name
-			}
-		});
-		return schedule;
-	}
-
 	async findByService(sercice: string) {
 		const schedule = await prisma.schedule.findMany({
 			where: {
 				servico: sercice
 			}
+		});
+		return schedule;
+	}
+
+	async findById(id: string) {
+		const schedule = await prisma.schedule.findUnique({
+			where: { id },
 		});
 		return schedule;
 	}

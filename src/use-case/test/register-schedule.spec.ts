@@ -21,30 +21,8 @@ describe("Register Schedule", () => {
             dias_semana: ["seg", "ter", "qua", "qui", "sex", "sab", "dom"],
             companyId: "company-01",
         })
-        console.log(schedule)
+
         expect(schedule.id).toEqual(expect.any(String))
     })
-
-    it("should not be possible to create two schedules with the same name", async () => {
-
-        await scheduleUseCase.execute({
-            nome: "Nome",
-            servico: "Servico",
-            descricao: "Descrição",
-            dias_semana: ["seg", "ter", "qua", "qui", "sex", "sab", "dom"],
-            companyId: "company-01",
-        })
-
-        await expect(() => scheduleUseCase.execute({
-            nome: "Nome",
-            servico: "Servico",
-            descricao: "Descrição",
-            dias_semana: ["seg", "ter", "qua", "qui", "sex", "sab", "dom"],
-            companyId: "company-01",
-        })).rejects.toBeInstanceOf(Error)
-
-    })
-
-
 
 })
