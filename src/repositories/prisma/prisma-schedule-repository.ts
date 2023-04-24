@@ -11,11 +11,10 @@ export class PrismaSchedulesRepository implements SchedulesRepository {
 		return schedule;
 	}
 
-	async findByService(sercice: string) {
-		const schedule = await prisma.schedule.findMany({
-			where: {
-				servico: sercice
-			}
+	async update(data: Prisma.CompanyCreateInput): Promise<Schedule> {
+		const schedule = await prisma.schedule.update({
+			where: { id: data.id },
+			data,
 		});
 		return schedule;
 	}
@@ -27,13 +26,16 @@ export class PrismaSchedulesRepository implements SchedulesRepository {
 		return schedule;
 	}
 
-	async searchMany(query: string) {
+	async searchMany(query: string): Promise<Schedule[]> {
 		const schedules = await prisma.schedule.findMany({
 			where: {
-				servico: query
-			}
-		})
-		return { schedules };
+				servico: {
+					contains: query,
+				},
+			},
+		});
+		return schedules;
 	}
+
 
 }

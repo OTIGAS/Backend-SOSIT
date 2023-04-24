@@ -11,6 +11,14 @@ export class PrismaCompaniesRepository implements CompaniesRepository {
 		return company;
 	}
 
+	async update(data: Prisma.CompanyCreateInput): Promise<Company> {
+		const company = await prisma.company.update({
+			where: { id: data.id },
+			data,
+		});
+		return company;
+	}
+
 	async findByCNPJ(cnpj: string) {
 		const company = await prisma.company.findUnique({
 			where: {

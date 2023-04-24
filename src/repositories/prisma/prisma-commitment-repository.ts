@@ -3,6 +3,7 @@ import { Prisma, Commitment } from "@prisma/client";
 import { CommitmentsRepository } from "../commitments-repository";
 
 export class PrimsaCommitmentsRepository implements CommitmentsRepository {
+
     async create(data: Prisma.CommitmentUncheckedCreateInput) {
         const commitment = await prisma.commitment.create({
             data,
@@ -11,16 +12,52 @@ export class PrimsaCommitmentsRepository implements CommitmentsRepository {
     }
 
     async findByUserIdOnDate(userId: string, startDateTime: Date, endDateTime: Date) {
-        throw new Error("Method not implemented.");
+        const commitment = await prisma.commitment.findFirst({
+            where: {
+                user_id: userId,
+                AND: [
+                    {
+                        start_date_time: {
+                            lte: endDateTime,
+                        },
+                    },
+                    {
+                        end_date_time: {
+                            gte: startDateTime,
+                        },
+                    },
+                ],
+            },
+        });
+
+        return commitment;
     }
+
     async findManyByUserId(userId: string) {
-        throw new Error("Method not implemented.");
+        const commitments = await prisma.commitment.findMany({
+            where: {
+                user_id: userId,
+            },
+        });
+        return commitments;
     }
+
     async findManyByScheduleId(scheduleId: string) {
-        throw new Error("Method not implemented.");
+        const commitments = await prisma.commitment.findMany({
+            where: {
+                schedule_id: scheduleId,
+            },
+        });
+        return commitments;
     }
+
     async countByScheduleId(scheduleId: string) {
-        throw new Error("Method not implemented.");
+        const count = await prisma.commitment.count({
+            where: {
+                schedule_id: scheduleId,
+            },
+        });
+        return count;
     }
 
 }
