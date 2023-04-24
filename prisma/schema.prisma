@@ -74,8 +74,9 @@ model Schedule {
 }
 
 model Commitment {
-  id        String   @id @default(uuid())
-  date_time DateTime
+  id              String   @id @default(uuid())
+  start_date_time DateTime
+  end_date_time   DateTime
 
   user    User   @relation(fields: [user_id], references: [id])
   user_id String

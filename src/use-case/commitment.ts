@@ -4,7 +4,9 @@ import { CommitmentsRepository } from '@/repositories/commitments-repository';
 interface CommitmentUseCaseRequest {
 	userId: string;
 	scheduleId: string;
-	dateTime: string;
+	startDateTime: string;
+	endDateTime: string;
+
 }
 
 interface CommitmentUseCaseResponse {
@@ -17,11 +19,25 @@ export class CommitmentUseCase {
 	async execute({
 		userId,
 		scheduleId,
-		dateTime
+		startDateTime,
+		endDateTime
 	}: CommitmentUseCaseRequest): Promise<CommitmentUseCaseResponse> {
 
+		const commitmentOnSameDate = await this.commitmentsRepository.findByUserIdOnDate(
+			userId,
+			new Date(startDateTime),
+			new Date(endDateTime)
+		);
+
+		if (commitmentOnSameDate) {
+			throw new Error()
+		}
+
 		const commitment = await this.commitmentsRepository.create({
-			user_id: userId, schedule_id: scheduleId, date_time: dateTime
+			user_id: userId,
+			schedule_id: scheduleId,
+			start_date_time: startDateTime,
+			end_date_time: endDateTime
 		});
 
 		if (!commitment) {

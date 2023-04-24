@@ -1,5 +1,5 @@
 import { prisma } from '@/lib/prisma';
-import { Prisma } from '@prisma/client';
+import { Prisma, Schedule } from '@prisma/client';
 import { SchedulesRepository } from '../schedules-repository';
 
 export class PrismaSchedulesRepository implements SchedulesRepository {
@@ -25,6 +25,15 @@ export class PrismaSchedulesRepository implements SchedulesRepository {
 			where: { id },
 		});
 		return schedule;
+	}
+
+	async searchMany(query: string) {
+		const schedules = await prisma.schedule.findMany({
+			where: {
+				servico: query
+			}
+		})
+		return { schedules };
 	}
 
 }

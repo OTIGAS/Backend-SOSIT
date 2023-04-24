@@ -8,7 +8,7 @@ export class InMemorySchedulesRepository implements SchedulesRepository {
 
 	async create(data: Prisma.ScheduleUncheckedCreateInput): Promise<Schedule> {
 		const schedule = {
-			id: randomUUID(),
+			id: data.id ?? randomUUID(),
 			nome: data.nome,
 			servico: data.servico,
 			descricao: data.descricao,
@@ -22,14 +22,21 @@ export class InMemorySchedulesRepository implements SchedulesRepository {
 		return schedule;
 	}
 
-	async findByService(service: string): Promise<Schedule[] | null> {
-		const schedules = this.items.filter((item) => item.servico === service);
+	async update(schedule: Prisma.ScheduleUncheckedUpdateInput): Promise<Schedule> {
+		const scheduleIndex = this.items.findIndex(schedule => schedule.id === schedule.id);
 
-		if (schedules.length === 0) {
-			return null;
+		if (scheduleIndex >= 0) {
+			this.items[scheduleIndex].nome = schedule.nome?.toString() ?? this.items[scheduleIndex].nome;
+			this.items[scheduleIndex].servico = schedule.servico?.toString() ?? this.items[scheduleIndex].servico;
+			this.items[scheduleIndex].descricao = schedule.descricao?.toString() ?? this.items[scheduleIndex].descricao;
+
+			const dias_semana = Array.isArray(schedule.dias_semana)
+				? schedule.dias_semana.filter(dia => dia !== undefined)
+				: [];
+			this.items[scheduleIndex].dias_semana = dias_semana;
 		}
 
-		return schedules;
+		return Promise.resolve(this.items[scheduleIndex]);
 	}
 
 	async findById(id: string): Promise<Schedule | null> {
@@ -40,6 +47,10 @@ export class InMemorySchedulesRepository implements SchedulesRepository {
 		}
 
 		return schedule;
+	}
+
+	async searchMany(query: string): Promise<Schedule[]> {
+		return this.items.filter((item) => item.servico.includes(query));
 	}
 
 }

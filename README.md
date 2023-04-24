@@ -15,29 +15,27 @@
 - [] Deve ser possível excluir o cadastro do empresa;
 
 - [x] Deve ser possível cadastrar a agenda;
-- [] Deve ser possível obter as informações da agenda;
+- [x] Deve ser possível obter as informações da agenda;
 
-- [] Deve ser possível pesquisar a agenda por serviços;
+- [x] Deve ser possível pesquisar a agenda por serviços;
 
-- [] Deve ser possível marcar compromissos na agenda;
+- [x] Deve ser possível marcar compromissos na agenda;
 
 - [] Deve ser possível desmarcar compromissos na agenda;
 
-- [] Deve ser possível obter o historioco de compromissos;
+- [x] Deve ser possível obter o historioco de compromissos;
 
 ## RN (Regras de negócio)
 
 - [x] O usuário não deve poder se cadastrar com um cpf duplicado;
 - [x] A empresa não deve poder se cadastrar com um cnpj duplicado;
 
-- [] O usuário não pode marcar dois compromissos no mesmo horário;
-- [] A empresa não pode marcar dois compromissos no mesmo horário;
-
-- [] O usuário não pode marcar compromissos sem ter um dia com antecedência;
+- [x] O usuário não pode marcar dois compromissos no mesmo horário;
+- [x] A empresa não pode marcar dois compromissos no mesmo horário;
 
 ## RNF (Requisitos não funcionais)
 
-- [] A senha do usuário e da empresa precisam estar criptografada;
+- [x] A senha do usuário e da empresa precisam estar criptografada;
 - [] Os dados da aplicação precisam estar persistidos em um banco PostgreSQL;
 
 
