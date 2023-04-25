@@ -2,8 +2,9 @@ import { PrismaCompaniesRepository } from '../../repositories/prisma/prisma-comp
 import { RegisterCompanyUseCase } from '../register-company';
 
 export function makeRegisterCompanyUseCase() {
-	const companiesRepository = new PrismaCompaniesRepository();
-	const registerCompanyUseCase = new RegisterCompanyUseCase(companiesRepository);
 
-	return registerCompanyUseCase;
+	const companiesRepository = new PrismaCompaniesRepository();
+	const useCase = new RegisterCompanyUseCase(companiesRepository);
+
+	return useCase;
 }

@@ -4,7 +4,7 @@ import { PrismaSchedulesRepository } from '@/repositories/prisma/prisma-schedule
 export function makeRegisterScheduleUseCase() {
 
 	const schedulesRepository = new PrismaSchedulesRepository();
-	const registerScheduleUseCase = new RegisterScheduleUseCase(schedulesRepository);
+	const useCase = new RegisterScheduleUseCase(schedulesRepository);
 
-	return registerScheduleUseCase;
+	return useCase;
 }
