@@ -15,22 +15,22 @@ interface UpdateScheduleUseCaseResponse {
 }
 
 export class UpdateScheduleUseCase {
-    constructor(private schedulesRepository: SchedulesRepository) { }
+	constructor(private schedulesRepository: SchedulesRepository) { }
 
-    async execute({
-        nome, servico, descricao, dias_semana, companyId
-    }: UpdateScheduleUseCaseRequest): Promise<UpdateScheduleUseCaseResponse> {
+	async execute({
+		nome, servico, descricao, dias_semana, companyId
+	}: UpdateScheduleUseCaseRequest): Promise<UpdateScheduleUseCaseResponse> {
 
-        const schedule = await this.schedulesRepository.update({
-            nome: nome,
-            servico: servico,
-            descricao: descricao,
-            dias_semana: dias_semana,
-            company_id: companyId
-        });
+		const schedule = await this.schedulesRepository.update({
+			nome: nome,
+			servico: servico,
+			descricao: descricao,
+			dias_semana: dias_semana,
+			company_id: companyId
+		});
 
-        return {
-            schedule
-        };
-    }
+		return {
+			schedule
+		};
+	}
 }

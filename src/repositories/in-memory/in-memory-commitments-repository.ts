@@ -39,7 +39,7 @@ export class InMemoryCommitmentsRepository implements CommitmentsRepository {
 
 		if (startTimeIsAlreadySet) {
 			throw new CommitemntAlreadyExistingAtThisTime();
-		};
+		}
 
 		return commitmentOnSameDate;
 	}

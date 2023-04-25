@@ -22,38 +22,38 @@ interface UpdateUserUseCaseResponse {
 }
 
 export class UpdateUserUseCase {
-    constructor(private userRepository: UsersRepository) { }
+	constructor(private userRepository: UsersRepository) { }
 
-    async execute({
-        nome,
-        email,
-        senha,
-        cpf,
-        telefone,
-        cep,
-        estado,
-        cidade,
-        rua,
-        numero,
-        nascimento
-    }: UpdateUserUseCaseRequest): Promise<UpdateUserUseCaseResponse> {
+	async execute({
+		nome,
+		email,
+		senha,
+		cpf,
+		telefone,
+		cep,
+		estado,
+		cidade,
+		rua,
+		numero,
+		nascimento
+	}: UpdateUserUseCaseRequest): Promise<UpdateUserUseCaseResponse> {
 
-        const senha_hash = await hash(senha, 6);
+		const senha_hash = await hash(senha, 6);
 
-        const user = await this.userRepository.update({
-            nome,
-            email,
-            senha_hash,
-            cpf,
-            telefone,
-            cep,
-            estado,
-            cidade,
-            rua,
-            numero,
-            nascimento
-        });
+		const user = await this.userRepository.update({
+			nome,
+			email,
+			senha_hash,
+			cpf,
+			telefone,
+			cep,
+			estado,
+			cidade,
+			rua,
+			numero,
+			nascimento
+		});
 
-        return { user };
-    }
+		return { user };
+	}
 }

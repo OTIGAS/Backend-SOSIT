@@ -3,8 +3,8 @@ import { PrismaSchedulesRepository } from '@/repositories/prisma/prisma-schedule
 
 export function makeGetScheduleProfileUseCase() {
 
-    const scheduleRepository = new PrismaSchedulesRepository();
-    const useCase = new GetScheduleProfileUseCase(scheduleRepository);
+	const scheduleRepository = new PrismaSchedulesRepository();
+	const useCase = new GetScheduleProfileUseCase(scheduleRepository);
 
-    return useCase;
+	return useCase;
 }

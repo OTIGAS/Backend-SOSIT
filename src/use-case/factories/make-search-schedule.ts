@@ -3,8 +3,8 @@ import { SearchScheduleUseCase } from '../search-schedule';
 
 export function makeSearchScheduleUseCase() {
 
-    const schedulesRepository = new PrismaSchedulesRepository();
-    const useCase = new SearchScheduleUseCase(schedulesRepository);
+	const schedulesRepository = new PrismaSchedulesRepository();
+	const useCase = new SearchScheduleUseCase(schedulesRepository);
 
-    return useCase;
+	return useCase;
 }

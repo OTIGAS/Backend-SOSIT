@@ -10,14 +10,14 @@ interface GetScheduleMetricsUseCaseResponse {
 }
 
 export class GetScheduleMetricsUseCase {
-    constructor(private commitmentsRepository: CommitmentsRepository) { }
+	constructor(private commitmentsRepository: CommitmentsRepository) { }
 
-    async execute({
-        scheduleId,
-    }: GetScheduleMetricsUseCaseRequest): Promise<GetScheduleMetricsUseCaseResponse> {
+	async execute({
+		scheduleId,
+	}: GetScheduleMetricsUseCaseRequest): Promise<GetScheduleMetricsUseCaseResponse> {
 
-        const schedulesCount = await this.commitmentsRepository.countByScheduleId(scheduleId)
+		const schedulesCount = await this.commitmentsRepository.countByScheduleId(scheduleId);
 
-        return { schedulesCount };
-    }
+		return { schedulesCount };
+	}
 }

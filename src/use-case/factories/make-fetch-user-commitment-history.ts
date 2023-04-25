@@ -3,8 +3,8 @@ import { PrimsaCommitmentsRepository } from '@/repositories/prisma/prisma-commit
 
 export function makeFetchUserCommitmentHistoryUseCase() {
 
-    const commitmentsRepository = new PrimsaCommitmentsRepository();
-    const useCase = new FetchUserCommitmentHistoryUseCase(commitmentsRepository);
+	const commitmentsRepository = new PrimsaCommitmentsRepository();
+	const useCase = new FetchUserCommitmentHistoryUseCase(commitmentsRepository);
 
-    return useCase;
+	return useCase;
 }

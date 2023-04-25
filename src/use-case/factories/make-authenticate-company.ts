@@ -3,8 +3,8 @@ import { PrismaCompaniesRepository } from '@/repositories/prisma/prisma-company-
 
 export function makeAuthenticateCompanyUseCase() {
 
-    const companyRepository = new PrismaCompaniesRepository();
-    const useCase = new AuthenticateCompanyUseCase(companyRepository);
+	const companyRepository = new PrismaCompaniesRepository();
+	const useCase = new AuthenticateCompanyUseCase(companyRepository);
 
-    return useCase;
+	return useCase;
 }

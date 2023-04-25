@@ -9,47 +9,47 @@ let userRepository: InMemoryUsersRepository;
 let updateUsersUseCase: UpdateUserUseCase;
 
 beforeEach(() => {
-    userRepository = new InMemoryUsersRepository();
-    updateUsersUseCase = new UpdateUserUseCase(userRepository);
+	userRepository = new InMemoryUsersRepository();
+	updateUsersUseCase = new UpdateUserUseCase(userRepository);
 });
 
 describe('Update User', () => {
 
-    it('should be able to update', async () => {
+	it('should be able to update', async () => {
 
-        const userOriginal = await userRepository.create({
-            nome: 'Nome',
-            email: 'email@gmail.com',
-            senha_hash: '123456',
-            cpf: '000.000.000-00',
-            telefone: '00 0 0000-0000',
-            cep: '00000-000',
-            estado: 'Estado',
-            cidade: 'Cidade',
-            rua: 'Rua',
-            numero: '123',
-            nascimento: '00/00/0000'
-        });
+		const userOriginal = await userRepository.create({
+			nome: 'Nome',
+			email: 'email@gmail.com',
+			senha_hash: '123456',
+			cpf: '000.000.000-00',
+			telefone: '00 0 0000-0000',
+			cep: '00000-000',
+			estado: 'Estado',
+			cidade: 'Cidade',
+			rua: 'Rua',
+			numero: '123',
+			nascimento: '00/00/0000'
+		});
 
-        console.log(userOriginal);
+		console.log(userOriginal);
 
-        const userChanged = await updateUsersUseCase.execute({
-            nome: 'Outro Nome',
-            email: 'outro.email@gmail.com',
-            senha: '123456',
-            cpf: '100.000.000-00',
-            telefone: '10 0 0000-0000',
-            cep: '10000-000',
-            estado: 'Outro Estado',
-            cidade: 'Outra Cidade',
-            rua: 'Outra Rua',
-            numero: 'Outro 123',
-            nascimento: '10/00/0000'
-        });
+		const userChanged = await updateUsersUseCase.execute({
+			nome: 'Outro Nome',
+			email: 'outro.email@gmail.com',
+			senha: '123456',
+			cpf: '100.000.000-00',
+			telefone: '10 0 0000-0000',
+			cep: '10000-000',
+			estado: 'Outro Estado',
+			cidade: 'Outra Cidade',
+			rua: 'Outra Rua',
+			numero: 'Outro 123',
+			nascimento: '10/00/0000'
+		});
 
-        console.log(userChanged);
+		console.log(userChanged);
 
-        // expect(user.id).toEqual(expect.any(String));
-    });
+		// expect(user.id).toEqual(expect.any(String));
+	});
 
 });

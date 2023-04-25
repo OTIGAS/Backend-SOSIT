@@ -3,8 +3,8 @@ import { GetCompanyProfileUseCase } from '../get-company-profile';
 
 export function makeGetCompanyProfileUseCase() {
 
-    const companyRepository = new PrismaCompaniesRepository();
-    const useCase = new GetCompanyProfileUseCase(companyRepository);
+	const companyRepository = new PrismaCompaniesRepository();
+	const useCase = new GetCompanyProfileUseCase(companyRepository);
 
-    return useCase;
+	return useCase;
 }

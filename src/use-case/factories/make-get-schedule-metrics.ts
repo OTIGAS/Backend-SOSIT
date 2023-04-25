@@ -3,8 +3,8 @@ import { GetScheduleMetricsUseCase } from '../get-schedule-metrics';
 
 export function makeGetScheduleMetricsUseCase() {
 
-    const commitmentsRepository = new PrimsaCommitmentsRepository();
-    const useCase = new GetScheduleMetricsUseCase(commitmentsRepository);
+	const commitmentsRepository = new PrimsaCommitmentsRepository();
+	const useCase = new GetScheduleMetricsUseCase(commitmentsRepository);
 
-    return useCase;
+	return useCase;
 }

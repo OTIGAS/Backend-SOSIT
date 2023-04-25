@@ -3,8 +3,8 @@ import { CommitmentUseCase } from '../commitment';
 
 export function makeCommitmentUseCase() {
 
-    const commitmentsRepository = new PrimsaCommitmentsRepository();
-    const useCase = new CommitmentUseCase(commitmentsRepository);
+	const commitmentsRepository = new PrimsaCommitmentsRepository();
+	const useCase = new CommitmentUseCase(commitmentsRepository);
 
-    return useCase;
+	return useCase;
 }

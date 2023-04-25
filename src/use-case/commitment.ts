@@ -30,7 +30,7 @@ export class CommitmentUseCase {
 		);
 
 		if (commitmentOnSameDate) {
-			throw new Error()
+			throw new Error();
 		}
 
 		const commitment = await this.commitmentsRepository.create({

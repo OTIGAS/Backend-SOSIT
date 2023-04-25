@@ -10,16 +10,16 @@ interface SearchScheduleUseCaseResponse {
 }
 
 export class SearchScheduleUseCase {
-    constructor(private schedulesRepository: SchedulesRepository) { }
+	constructor(private schedulesRepository: SchedulesRepository) { }
 
-    async execute({
-        query
-    }: SearchScheduleUseCaseRequest): Promise<SearchScheduleUseCaseResponse> {
+	async execute({
+		query
+	}: SearchScheduleUseCaseRequest): Promise<SearchScheduleUseCaseResponse> {
 
-        const schedules = await this.schedulesRepository.searchMany(query);
+		const schedules = await this.schedulesRepository.searchMany(query);
 
-        return {
-            schedules
-        };
-    }
+		return {
+			schedules
+		};
+	}
 }

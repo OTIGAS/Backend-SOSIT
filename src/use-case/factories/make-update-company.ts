@@ -3,8 +3,8 @@ import { UpdateCompanyUseCase } from '../update-company';
 
 export function makeUpdateCompanyUseCase() {
 
-    const companyRepository = new PrismaCompaniesRepository();
-    const useCase = new UpdateCompanyUseCase(companyRepository);
+	const companyRepository = new PrismaCompaniesRepository();
+	const useCase = new UpdateCompanyUseCase(companyRepository);
 
-    return useCase;
+	return useCase;
 }

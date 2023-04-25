@@ -10,14 +10,14 @@ interface FetchScheduleCommitmentHistoryUseCaseResponse {
 }
 
 export class FetchScheduleCommitmentHistoryUseCase {
-    constructor(private commitmentsRepository: CommitmentsRepository) { }
+	constructor(private commitmentsRepository: CommitmentsRepository) { }
 
-    async execute({
-        scheduleId
-    }: FetchScheduleCommitmentHistoryUseCaseRequest): Promise<FetchScheduleCommitmentHistoryUseCaseResponse> {
+	async execute({
+		scheduleId
+	}: FetchScheduleCommitmentHistoryUseCaseRequest): Promise<FetchScheduleCommitmentHistoryUseCaseResponse> {
 
-        const commitments = await this.commitmentsRepository.findManyByScheduleId(scheduleId);
+		const commitments = await this.commitmentsRepository.findManyByScheduleId(scheduleId);
 
-        return { commitments };
-    }
+		return { commitments };
+	}
 }
