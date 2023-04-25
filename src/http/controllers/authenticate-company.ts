@@ -16,10 +16,19 @@ export async function authenticateCompany(request: FastifyRequest, response: Fas
 		const companiesRepository = new PrismaCompaniesRepository();
 		const authenticateCompanyUseCase = new AuthenticateCompanyUseCase(companiesRepository);
 
-		await authenticateCompanyUseCase.execute({
+		const { company } = await authenticateCompanyUseCase.execute({
 			email,
 			senha,
 		});
+
+		const token = await response.jwtSign({}, {
+			sign: {
+				sub: company.id
+			}
+		})
+
+		return response.status(201).send({ token });
+
 	} catch (err) {
 		if (err instanceof InvalidCredencialsError) {
 			return response.status(400).send({
@@ -31,6 +40,4 @@ export async function authenticateCompany(request: FastifyRequest, response: Fas
 		}
 		throw err;
 	}
-
-	return response.status(201).send();
 }

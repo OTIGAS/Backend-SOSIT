@@ -16,10 +16,19 @@ export async function authenticateUser(request: FastifyRequest, response: Fastif
 		const usersRepository = new PrismaUsersRepository();
 		const authenticateUserUseCase = new AuthenticateUserUseCase(usersRepository);
 
-		await authenticateUserUseCase.execute({
+		const { user } = await authenticateUserUseCase.execute({
 			email,
 			senha,
 		});
+
+		const token = await response.jwtSign({}, {
+			sign: {
+				sub: user.id
+			}
+		})
+
+		return response.status(201).send({ token });
+
 	} catch (err) {
 		if (err instanceof InvalidCredencialsError) {
 			return response.status(400).send({
@@ -31,6 +40,4 @@ export async function authenticateUser(request: FastifyRequest, response: Fastif
 		}
 		throw err;
 	}
-
-	return response.status(201).send();
 }
