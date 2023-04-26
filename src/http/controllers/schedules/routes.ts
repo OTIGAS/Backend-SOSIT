@@ -7,8 +7,8 @@ export async function scheduleRoutes(app: FastifyInstance) {
 
     app.addHook('onRequest', verifyJWT)
 
-    app.get('/schedules/search', search)
+    app.post('/companies/:companyId/schedules', register);
 
-    app.post('/schedules', register);
+    app.get('/companies/:companyId/schedules/search', search)
 
 }   

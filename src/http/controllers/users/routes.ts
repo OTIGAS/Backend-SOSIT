@@ -1,16 +1,20 @@
-import { authenticate } from './authenticate';
-import { profile } from './profile';
 import { register } from './register';
+import { authenticate } from './authenticate';
+import { update } from './update';
+import { get } from './get-profile';
+import { profile } from './profile';
+
 import { FastifyInstance } from 'fastify';
 import { verifyJWT } from '../../middlewares/verify-jwt';
-import { update } from './update';
 
 export async function usersRoutes(app: FastifyInstance) {
     app.post('/users', register);
 
-    app.patch('/update/:id', update);
+    app.post('/users/authenticate', authenticate);
 
-    app.post('/authenticate', authenticate);
+    app.patch('/users/update/:id', update);
+
+    app.get('/users/get-profile/:id', get);
 
     app.get('/users/me', { onRequest: [verifyJWT] }, profile)
 

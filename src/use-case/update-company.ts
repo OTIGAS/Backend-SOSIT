@@ -1,35 +1,36 @@
 import { CompaniesRepository } from '../repositories/companies-repository';
 import { hash } from 'bcryptjs';
-import { CompanyAlreadyExistsError } from './errors/company-already-exists';
 import { Company } from '@prisma/client';
 
 interface UpdateCompanyUseCaseRequest {
-    nome_fantasia: string,
-    razao_social: string,
-    email: string,
-    senha: string,
-    cnpj: string,
-    sobre: string,
-    img_perfil: string,
-    link_google: string,
-    telefone: string,
-    email_contato: string,
-    nome_contato: string,
-    cep: string,
-    estado: string,
-    cidade: string,
-    rua: string,
-    numero: string,
+	id: string,
+	nome_fantasia: string,
+	razao_social: string,
+	email: string,
+	senha: string,
+	cnpj: string,
+	sobre: string,
+	img_perfil: string,
+	link_google: string,
+	telefone: string,
+	email_contato: string,
+	nome_contato: string,
+	cep: string,
+	estado: string,
+	cidade: string,
+	rua: string,
+	numero: string,
 }
 
 interface UpdateCompanyUseCaseResponse {
-    company: Company;
+	company: Company;
 }
 
 export class UpdateCompanyUseCase {
 	constructor(private companyRepository: CompaniesRepository) { }
 
 	async execute({
+		id,
 		nome_fantasia,
 		razao_social,
 		email,
@@ -51,6 +52,7 @@ export class UpdateCompanyUseCase {
 		const senha_hash = await hash(senha, 6);
 
 		const company = await this.companyRepository.update({
+			id,
 			nome_fantasia,
 			razao_social,
 			email,

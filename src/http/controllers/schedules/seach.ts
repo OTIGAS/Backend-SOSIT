@@ -12,7 +12,7 @@ export async function search(request: FastifyRequest, response: FastifyReply) {
     const searchScheduleUseCase = makeSearchScheduleUseCase()
 
     const { schedules } = await searchScheduleUseCase.execute({
-        query: query,
+        query,
     })
 
     return response.status(200).send({

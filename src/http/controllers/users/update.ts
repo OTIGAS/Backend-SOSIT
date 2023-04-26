@@ -8,8 +8,12 @@ interface UpdateRequestParams extends RouteGenericInterface {
     };
 }
 
-export async function update(request: FastifyRequest<UpdateRequestParams>, response: FastifyReply) {
-    const id = request.params.id;
+export async function update(request: FastifyRequest, response: FastifyReply) {
+
+    const userUpdateParamsSchema = z.object({
+        userId: z.string().uuid()
+    })
+
 
     const userUpdateBodySchema = z.object({
         nome: z.string(),
@@ -22,11 +26,12 @@ export async function update(request: FastifyRequest<UpdateRequestParams>, respo
         cidade: z.string(),
         rua: z.string(),
         numero: z.string(),
-        nascimento: z.string(),
-        criado_em: z.string()
+        nascimento: z.string()
     });
 
     try {
+        const { userId } = userUpdateParamsSchema.parse(request.params)
+
         const {
             nome,
             email,
@@ -39,16 +44,15 @@ export async function update(request: FastifyRequest<UpdateRequestParams>, respo
             rua,
             numero,
             nascimento,
-            criado_em
         } = userUpdateBodySchema.parse(request.body);
 
         const updateUserUseCase = makeUpdateUserUseCase();
 
         const updatedUser = await updateUserUseCase.execute({
-            id,
+            id: userId,
             nome,
             email,
-            senha,
+            senha_hash: senha,
             cpf,
             telefone,
             cep,
@@ -56,8 +60,7 @@ export async function update(request: FastifyRequest<UpdateRequestParams>, respo
             cidade,
             rua,
             numero,
-            nascimento,
-            criado_em
+            nascimento
         });
 
         return response.status(200).send({
@@ -65,7 +68,7 @@ export async function update(request: FastifyRequest<UpdateRequestParams>, respo
         });
     } catch (error) {
         return response.status(400).send({
-            message: error
+            message: error//.message
         });
     }
 }

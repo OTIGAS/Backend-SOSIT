@@ -2,16 +2,16 @@ import { Schedule } from '@prisma/client';
 import { SchedulesRepository } from '@/repositories/schedules-repository';
 
 interface UpdateScheduleUseCaseRequest {
-    nome: string;
-    servico: string;
-    descricao: string;
-    dias_semana: string[];
+	nome: string;
+	servico: string;
+	descricao: string;
+	dias_semana: string[];
 
-    companyId: string;
+	companyId?: string;
 }
 
 interface UpdateScheduleUseCaseResponse {
-    schedule: Schedule;
+	schedule: Schedule;
 }
 
 export class UpdateScheduleUseCase {

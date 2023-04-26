@@ -4,20 +4,26 @@ import { makeRegisterScheduleUseCase } from '@/use-case/factories/make-register-
 import { ScheduleNotFoundError } from '@/use-case/errors/schedule-not-found-error';
 
 export async function register(request: FastifyRequest, response: FastifyReply) {
+	// console.log(request.jwtVerify())
+
+	const scheduleRegisterParamsSchema = z.object({
+		companyId: z.string().uuid()
+	})
+
 	const scheduleRegisterBodySchema = z.object({
 		nome: z.string(),
 		servico: z.string(),
 		descricao: z.string(),
 		dias_semana: z.string().array(),
-		companyId: z.string(),
 	});
+
+	const { companyId } = scheduleRegisterParamsSchema.parse(request.params)
 
 	const {
 		nome,
 		servico,
 		descricao,
 		dias_semana,
-		companyId,
 	} = scheduleRegisterBodySchema.parse(request.body);
 
 	try {

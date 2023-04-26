@@ -12,7 +12,6 @@ CREATE TABLE "users" (
     "rua" TEXT NOT NULL,
     "numero" TEXT NOT NULL,
     "nascimento" TEXT NOT NULL,
-    "criado_em" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "users_pkey" PRIMARY KEY ("id")
 );
@@ -36,7 +35,6 @@ CREATE TABLE "companies" (
     "cidade" TEXT NOT NULL,
     "rua" TEXT NOT NULL,
     "numero" TEXT NOT NULL,
-    "criado_em" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "companies_pkey" PRIMARY KEY ("id")
 );
@@ -57,7 +55,8 @@ CREATE TABLE "schedules" (
 -- CreateTable
 CREATE TABLE "Commitment" (
     "id" TEXT NOT NULL,
-    "date_time" TIMESTAMP(3) NOT NULL,
+    "start_date_time" TIMESTAMP(3) NOT NULL,
+    "end_date_time" TIMESTAMP(3) NOT NULL,
     "user_id" TEXT NOT NULL,
     "schedule_id" TEXT NOT NULL,
 
@@ -75,6 +74,9 @@ CREATE UNIQUE INDEX "companies_email_key" ON "companies"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "companies_cnpj_key" ON "companies"("cnpj");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "schedules_nome_key" ON "schedules"("nome");
 
 -- AddForeignKey
 ALTER TABLE "schedules" ADD CONSTRAINT "schedules_company_id_fkey" FOREIGN KEY ("company_id") REFERENCES "companies"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

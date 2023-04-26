@@ -22,8 +22,6 @@ model User {
   numero     String
   nascimento String
 
-  criado_em DateTime @default(now())
-
   commitment Commitment[]
 
   @@map("users")
@@ -48,8 +46,6 @@ model Company {
   cidade        String
   rua           String
   numero        String
-
-  criado_em DateTime @default(now())
 
   schedule Schedule[]
 

@@ -6,7 +6,7 @@ interface UpdateUserUseCaseRequest {
 	id: string,
 	nome: string,
 	email: string,
-	senha: string,
+	senha_hash: string,
 	cpf: string,
 	telefone: string,
 	cep: string,
@@ -14,8 +14,7 @@ interface UpdateUserUseCaseRequest {
 	cidade: string,
 	rua: string,
 	numero: string,
-	nascimento: string,
-	criado_em: Date
+	nascimento: string
 }
 
 interface UpdateUserUseCaseResponse {
@@ -27,7 +26,7 @@ export class UpdateUserUseCase {
 
 	async execute(data: UpdateUserUseCaseRequest): Promise<UpdateUserUseCaseResponse> {
 
-		const senha_hash = await hash(data.senha, 6);
+		const senha_hash = await hash(data.senha_hash, 6);
 
 		const user = await this.userRepository.update({
 			...data,
