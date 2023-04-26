@@ -5,28 +5,28 @@ import { z } from 'zod';
 
 export async function get(request: FastifyRequest, response: FastifyReply) {
 
-    const userUpdateParamsSchema = z.object({
-        userId: z.string().uuid()
-    })
+	const userUpdateParamsSchema = z.object({
+		userId: z.string().uuid()
+	});
 
-    try {
-        const { userId } = userUpdateParamsSchema.parse(request.params)
+	try {
+		const { userId } = userUpdateParamsSchema.parse(request.params);
 
-        const getUserProfileUseCase = makeGetUserProfileUseCase();
+		const getUserProfileUseCase = makeGetUserProfileUseCase();
 
-        const { user } = await getUserProfileUseCase.execute({ userId });
+		const { user } = await getUserProfileUseCase.execute({ userId });
 
-        return response.status(200).send({ user });
+		return response.status(200).send({ user });
 
-    } catch (err) {
-        if (err instanceof InvalidCredencialsError) {
-            return response.status(400).send({
-                message: err.message
-            });
-        }
-        else {
+	} catch (err) {
+		if (err instanceof InvalidCredencialsError) {
+			return response.status(400).send({
+				message: err.message
+			});
+		}
+		else {
 
-        }
-        throw err;
-    }
+		}
+		throw err;
+	}
 }

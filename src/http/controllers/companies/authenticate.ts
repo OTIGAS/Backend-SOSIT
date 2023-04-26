@@ -25,7 +25,7 @@ export async function authenticate(request: FastifyRequest, response: FastifyRep
 			sign: {
 				sub: company.id
 			}
-		})
+		});
 
 		return response.status(200).send({ token });
 

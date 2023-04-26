@@ -13,7 +13,7 @@ export async function search(request: FastifyRequest, response: FastifyReply) {
 
     const { schedules } = await searchScheduleUseCase.execute({
         query,
-    })
+    });
 
     return response.status(200).send({
         schedules

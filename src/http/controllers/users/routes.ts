@@ -8,14 +8,14 @@ import { FastifyInstance } from 'fastify';
 import { verifyJWT } from '../../middlewares/verify-jwt';
 
 export async function usersRoutes(app: FastifyInstance) {
-    app.post('/users', register);
+	app.post('/users', register);
 
-    app.post('/users/authenticate', authenticate);
+	app.post('/users/authenticate', authenticate);
 
-    app.patch('/users/update/:id', update);
+	app.patch('/users/update/:id', update);
 
-    app.get('/users/get-profile/:id', get);
+	app.get('/users/get-profile/:id', get);
 
-    app.get('/users/me', { onRequest: [verifyJWT] }, profile)
+	app.get('/users/me', { onRequest: [verifyJWT] }, profile);
 
 }  
