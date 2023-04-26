@@ -1,10 +1,10 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 import { CompanyAlreadyExistsError } from '@/use-case/errors/company-already-exists';
-import { makeRegisterCompanyUseCase } from '../../use-case/factories/make-register-company-use-case';
+import { makeRegisterCompanyUseCase } from '@/use-case/factories/make-register-company-use-case';
 
 
-export async function registerCompany(request: FastifyRequest, response: FastifyReply) {
+export async function register(request: FastifyRequest, response: FastifyReply) {
 	const companyRegisteBodySchema = z.object({
 		nome_fantasia: z.string(),
 		razao_social: z.string(),

@@ -31,8 +31,6 @@ describe('Update User', () => {
 			nascimento: '00/00/0000'
 		});
 
-		console.log(userOriginal);
-
 		const userChanged = await updateUsersUseCase.execute({
 			nome: 'Outro Nome',
 			email: 'outro.email@gmail.com',
@@ -47,9 +45,9 @@ describe('Update User', () => {
 			nascimento: '10/00/0000'
 		});
 
-		console.log(userChanged);
-
-		// expect(user.id).toEqual(expect.any(String));
+		expect(userChanged.user).toEqual(
+			expect.objectContaining({ id: userOriginal.id, }),
+		);
 	});
 
 });

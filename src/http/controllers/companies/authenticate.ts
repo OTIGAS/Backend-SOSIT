@@ -4,7 +4,7 @@ import { AuthenticateCompanyUseCase } from '@/use-case/authenticate-campany';
 import { InvalidCredencialsError } from '@/use-case/errors/invalid-credencials-error';
 import { PrismaCompaniesRepository } from '@/repositories/prisma/prisma-company-repository';
 
-export async function authenticateCompany(request: FastifyRequest, response: FastifyReply) {
+export async function authenticate(request: FastifyRequest, response: FastifyReply) {
 	const companyAuthenticateBodySchema = z.object({
 		email: z.string().email(),
 		senha: z.string().min(6),
@@ -27,7 +27,7 @@ export async function authenticateCompany(request: FastifyRequest, response: Fas
 			}
 		})
 
-		return response.status(201).send({ token });
+		return response.status(200).send({ token });
 
 	} catch (err) {
 		if (err instanceof InvalidCredencialsError) {

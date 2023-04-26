@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { makeRegisterScheduleUseCase } from '@/use-case/factories/make-register-schedule-use-case';
 import { ScheduleNotFoundError } from '@/use-case/errors/schedule-not-found-error';
 
-export async function registerSchedule(request: FastifyRequest, response: FastifyReply) {
+export async function register(request: FastifyRequest, response: FastifyReply) {
 	const scheduleRegisterBodySchema = z.object({
 		nome: z.string(),
 		servico: z.string(),
