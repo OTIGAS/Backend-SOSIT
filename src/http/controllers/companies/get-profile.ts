@@ -1,5 +1,4 @@
-import { FastifyReply, FastifyRequest, RouteGenericInterface } from 'fastify';
-import { InvalidCredencialsError } from '@/use-case/errors/invalid-credencials-error';
+import { FastifyReply, FastifyRequest } from 'fastify';
 import { makeGetCompanyProfileUseCase } from '@/use-case/factories/make-get-company-profile';
 import { z } from 'zod';
 import { ResourceNotFoundError } from '@/use-case/errors/resource-not-found-error';
