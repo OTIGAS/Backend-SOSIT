@@ -7,7 +7,7 @@ export async function register(request: FastifyRequest, response: FastifyReply) 
 
 	const scheduleRegisterParamsSchema = z.object({
 		companyId: z.string().uuid()
-	})
+	});
 
 	const scheduleRegisterBodySchema = z.object({
 		nome: z.string(),
@@ -16,7 +16,7 @@ export async function register(request: FastifyRequest, response: FastifyReply) 
 		dias_semana: z.string().array(),
 	});
 
-	const { companyId } = scheduleRegisterParamsSchema.parse(request.params)
+	const { companyId } = scheduleRegisterParamsSchema.parse(request.params);
 
 	const {
 		nome,

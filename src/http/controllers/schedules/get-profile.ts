@@ -5,25 +5,25 @@ import { makeGetScheduleProfileUseCase } from '@/use-case/factories/make-get-sch
 
 export async function get(request: FastifyRequest, response: FastifyReply) {
 
-    const scheduleGetParamsSchema = z.object({
-        scheduleId: z.string().uuid()
-    })
+	const scheduleGetParamsSchema = z.object({
+		scheduleId: z.string().uuid()
+	});
 
-    try {
-        const { scheduleId } = scheduleGetParamsSchema.parse(request.params)
+	try {
+		const { scheduleId } = scheduleGetParamsSchema.parse(request.params);
 
-        const getScheduleProfileUseCase = makeGetScheduleProfileUseCase();
+		const getScheduleProfileUseCase = makeGetScheduleProfileUseCase();
 
-        const { schedule } = await getScheduleProfileUseCase.execute({ scheduleId });
+		const { schedule } = await getScheduleProfileUseCase.execute({ scheduleId });
 
-        return response.status(200).send({ schedule });
+		return response.status(200).send({ schedule });
 
-    } catch (err) {
-        if (err instanceof InvalidCredencialsError) {
-            return response.status(400).send({
-                message: err.message
-            });
-        }
-        throw err;
-    }
+	} catch (err) {
+		if (err instanceof InvalidCredencialsError) {
+			return response.status(400).send({
+				message: err.message
+			});
+		}
+		throw err;
+	}
 }

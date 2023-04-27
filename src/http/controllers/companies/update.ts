@@ -14,7 +14,7 @@ export async function update(request: FastifyRequest<UpdateRequestParams>, respo
 
     const companyUpdateParamsSchema = z.object({
         companyId: z.string().uuid()
-    })
+    });
 
     const companyUpdateBodySchema = z.object({
         nome_fantasia: z.string(),
@@ -36,7 +36,7 @@ export async function update(request: FastifyRequest<UpdateRequestParams>, respo
     });
 
     try {
-        const { companyId } = companyUpdateParamsSchema.parse(request.params)
+        const { companyId } = companyUpdateParamsSchema.parse(request.params);
 
         const {
             nome_fantasia,

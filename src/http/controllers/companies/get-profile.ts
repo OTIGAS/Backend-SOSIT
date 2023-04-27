@@ -6,25 +6,25 @@ import { ResourceNotFoundError } from '@/use-case/errors/resource-not-found-erro
 
 export async function get(request: FastifyRequest, response: FastifyReply) {
 
-    const companyGetParamsSchema = z.object({
-        companyId: z.string().uuid()
-    })
+	const companyGetParamsSchema = z.object({
+		companyId: z.string().uuid()
+	});
 
-    try {
-        const { companyId } = companyGetParamsSchema.parse(request.params)
+	try {
+		const { companyId } = companyGetParamsSchema.parse(request.params);
 
-        const getCompanyProfileUseCase = makeGetCompanyProfileUseCase();
+		const getCompanyProfileUseCase = makeGetCompanyProfileUseCase();
 
-        const { company } = await getCompanyProfileUseCase.execute({ companyId });
+		const { company } = await getCompanyProfileUseCase.execute({ companyId });
 
-        return response.status(200).send({ company });
+		return response.status(200).send({ company });
 
-    } catch (err) {
-        if (err instanceof ResourceNotFoundError) {
-            return response.status(400).send({
-                message: err.message
-            });
-        }
-        throw err;
-    }
+	} catch (err) {
+		if (err instanceof ResourceNotFoundError) {
+			return response.status(400).send({
+				message: err.message
+			});
+		}
+		throw err;
+	}
 }

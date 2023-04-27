@@ -5,10 +5,10 @@ import { ResourceNotFoundError } from '@/use-case/errors/resource-not-found-erro
 import { UserAlreadyExistsError } from '@/use-case/errors/user-already-exists';
 
 export async function update(request: FastifyRequest, response: FastifyReply) {
-
     const userUpdateParamsSchema = z.object({
         userId: z.string().uuid()
-    })
+    });
+
 
     const userUpdateBodySchema = z.object({
         nome: z.string(),
@@ -25,7 +25,7 @@ export async function update(request: FastifyRequest, response: FastifyReply) {
     });
 
     try {
-        const { userId } = userUpdateParamsSchema.parse(request.params)
+        const { userId } = userUpdateParamsSchema.parse(request.params);
 
         const {
             nome,
@@ -62,15 +62,8 @@ export async function update(request: FastifyRequest, response: FastifyReply) {
             user: updatedUser
         });
     } catch (error) {
-        if (error instanceof ResourceNotFoundError) {
-            return response.status(409).send({
-                message: error.message
-            });
-        } else if (error instanceof UserAlreadyExistsError) {
-            return response.status(409).send({
-                message: error.message
-            });
-        }
-        throw error;
+        return response.status(400).send({
+            message: error//.message
+        });
     }
 }
