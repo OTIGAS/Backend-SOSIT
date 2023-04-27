@@ -45,4 +45,18 @@ export class PrismaUsersRepository implements UsersRepository {
 		});
 		return user;
 	}
+
+	async getAll() {
+		const users = await prisma.user.findMany();
+		return users;
+	}
+
+	async delete(id: string) {
+		await prisma.user.delete({
+			where: {
+				id
+			}
+		})
+		return "Usario deletado com sucesso!"
+	}
 }

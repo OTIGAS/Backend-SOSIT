@@ -45,4 +45,9 @@ export class PrismaCompaniesRepository implements CompaniesRepository {
 		});
 		return company;
 	}
+
+	async getAll(): Promise<Company[]> {
+		const companies = await prisma.company.findMany();
+		return companies;
+	}
 }

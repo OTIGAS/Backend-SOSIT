@@ -6,4 +6,5 @@ export interface CompaniesRepository {
     findByCNPJ(cnpj: string): Promise<Company | null>
     findByEmail(email: string): Promise<Company | null>
     findById(id: string): Promise<Company | null>
+    getAll(): Promise<Company[]>
 }

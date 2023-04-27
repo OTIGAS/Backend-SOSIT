@@ -4,6 +4,7 @@ import { FastifyInstance } from 'fastify';
 import { verifyJWT } from '../../middlewares/verify-jwt';
 import { profile } from './profile';
 import { update } from './update';
+import { getAll } from './get-all';
 import { get } from './get-profile';
 
 export async function companiesRoutes(app: FastifyInstance) {
@@ -15,6 +16,8 @@ export async function companiesRoutes(app: FastifyInstance) {
 	app.patch('/companies/update/:companyId', update);
 
 	app.get('/companies/get-profile/:companyId', get);
+
+	app.get('/companies/get-all-companies/', getAll);
 
 	// app.get('/companies/me', { onRequest: [verifyJWT] }, profile)
 

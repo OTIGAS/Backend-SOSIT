@@ -44,4 +44,9 @@ export class PrismaSchedulesRepository implements SchedulesRepository {
 		return schedules;
 	}
 
+	async getAll() {
+		const schedules = await prisma.schedule.findMany();
+		return schedules;
+	}
+
 }

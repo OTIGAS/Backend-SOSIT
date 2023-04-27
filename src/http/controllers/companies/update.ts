@@ -5,9 +5,9 @@ import { ResourceNotFoundError } from '@/use-case/errors/resource-not-found-erro
 import { CompanyAlreadyExistsError } from '@/use-case/errors/company-already-exists';
 
 interface UpdateRequestParams extends RouteGenericInterface {
-    Params: {
-        id: string;
-    };
+	Params: {
+		id: string;
+	};
 }
 
 export async function update(request: FastifyRequest<UpdateRequestParams>, response: FastifyReply) {
@@ -80,7 +80,7 @@ export async function update(request: FastifyRequest<UpdateRequestParams>, respo
 		});
 
 		return response.status(200).send({
-			user: updatedCompany
+			company: updatedCompany
 		});
 	} catch (error) {
 		if (error instanceof ResourceNotFoundError) {

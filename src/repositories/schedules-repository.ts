@@ -6,4 +6,5 @@ export interface SchedulesRepository {
     findById(id: string): Promise<Schedule | null>
     findByNome(nome: string): Promise<Schedule | null>
     searchMany(query: string): Promise<Schedule[]>
+    getAll(): Promise<Schedule[]>
 }

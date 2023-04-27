@@ -35,17 +35,19 @@ export async function update(request: FastifyRequest, response: FastifyReply) {
 
 		const updateScheduleUseCase = makeUpdateScheduleUseCase();
 
-		const updatedUser = await updateScheduleUseCase.execute({
+		const updatedSchedule = await updateScheduleUseCase.execute({
 			id: scheduleId,
 			nome,
 			servico,
 			descricao,
 			dias_semana,
-			companyId,
+			companyId: companyId,
 		});
 
+		console.log(updatedSchedule)
+
 		return response.status(200).send({
-			user: updatedUser
+			schedule: updatedSchedule
 		});
 	} catch (error) {
 		if (error instanceof ResourceNotFoundError) {
@@ -57,6 +59,7 @@ export async function update(request: FastifyRequest, response: FastifyReply) {
 				message: error.message
 			});
 		}
+		console.log("Passei")
 		throw error;
 	}
 }
