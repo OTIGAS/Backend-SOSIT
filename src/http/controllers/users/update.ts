@@ -1,19 +1,14 @@
 import { FastifyReply, FastifyRequest, RouteGenericInterface } from 'fastify';
 import { z } from 'zod';
 import { makeUpdateUserUseCase } from '@/use-case/factories/make-update-user';
-
-interface UpdateRequestParams extends RouteGenericInterface {
-    Params: {
-        id: string;
-    };
-}
+import { ResourceNotFoundError } from '@/use-case/errors/resource-not-found-error';
+import { UserAlreadyExistsError } from '@/use-case/errors/user-already-exists';
 
 export async function update(request: FastifyRequest, response: FastifyReply) {
 
     const userUpdateParamsSchema = z.object({
         userId: z.string().uuid()
     })
-
 
     const userUpdateBodySchema = z.object({
         nome: z.string(),
@@ -67,8 +62,15 @@ export async function update(request: FastifyRequest, response: FastifyReply) {
             user: updatedUser
         });
     } catch (error) {
-        return response.status(400).send({
-            message: error//.message
-        });
+        if (error instanceof ResourceNotFoundError) {
+            return response.status(409).send({
+                message: error.message
+            });
+        } else if (error instanceof UserAlreadyExistsError) {
+            return response.status(409).send({
+                message: error.message
+            });
+        }
+        throw error;
     }
 }

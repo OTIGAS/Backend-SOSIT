@@ -1,6 +1,8 @@
 import { FastifyReply, FastifyRequest, RouteGenericInterface } from 'fastify';
 import { z } from 'zod';
 import { makeUpdateCompanyUseCase } from '@/use-case/factories/make-update-company';
+import { ResourceNotFoundError } from '@/use-case/errors/resource-not-found-error';
+import { CompanyAlreadyExistsError } from '@/use-case/errors/company-already-exists';
 
 interface UpdateRequestParams extends RouteGenericInterface {
     Params: {
@@ -81,8 +83,15 @@ export async function update(request: FastifyRequest<UpdateRequestParams>, respo
             user: updatedCompany
         });
     } catch (error) {
-        return response.status(400).send({
-            message: error//.message
-        });
+        if (error instanceof ResourceNotFoundError) {
+            return response.status(409).send({
+                message: error.message
+            });
+        } else if (error instanceof CompanyAlreadyExistsError) {
+            return response.status(409).send({
+                message: error.message
+            });
+        }
+        throw error;
     }
 }

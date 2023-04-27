@@ -26,6 +26,13 @@ export class PrismaSchedulesRepository implements SchedulesRepository {
 		return schedule;
 	}
 
+	async findByNome(nome: string) {
+		const schedule = await prisma.schedule.findUnique({
+			where: { nome },
+		});
+		return schedule;
+	}
+
 	async searchMany(query: string): Promise<Schedule[]> {
 		const schedules = await prisma.schedule.findMany({
 			where: {
@@ -36,6 +43,5 @@ export class PrismaSchedulesRepository implements SchedulesRepository {
 		});
 		return schedules;
 	}
-
 
 }

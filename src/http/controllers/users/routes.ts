@@ -12,10 +12,10 @@ export async function usersRoutes(app: FastifyInstance) {
 
     app.post('/users/authenticate', authenticate);
 
-    app.patch('/users/update/:id', update);
+    app.patch('/users/update/:userId', update);
 
-    app.get('/users/get-profile/:id', get);
+    app.get('/users/get-profile/:userId', get);
 
-    app.get('/users/me', { onRequest: [verifyJWT] }, profile)
+    // app.get('/users/me', { onRequest: [verifyJWT] }, profile)
 
 }  

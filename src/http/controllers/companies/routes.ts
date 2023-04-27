@@ -12,9 +12,9 @@ export async function companiesRoutes(app: FastifyInstance) {
 
     app.post('/companies/authenticate', authenticate);
 
-    app.patch('/companies/update/:id', update);
+    app.patch('/companies/update/:companyId', update);
 
-    app.get('/companies/get-profile/:id', get);
+    app.get('/companies/get-profile/:companyId', get);
 
     // app.get('/companies/me', { onRequest: [verifyJWT] }, profile)
 

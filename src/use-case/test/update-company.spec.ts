@@ -32,9 +32,8 @@ describe('Update Comapny', () => {
 			numero: '123'
 		});
 
-		console.log(companyOriginal);
-
 		const companyChanged = await updateCompanyUseCase.execute({
+			id: companyOriginal.id,
 			nome_fantasia: 'Outro Nome Fantasia',
 			razao_social: 'Outra Razão Social',
 			email: 'outroEmail@gmail.com',
@@ -52,8 +51,6 @@ describe('Update Comapny', () => {
 			rua: 'Outra Rua',
 			numero: '123'
 		});
-
-		console.log(companyChanged);
 
 		expect(companyChanged.company).toEqual(
 			expect.objectContaining({ id: companyOriginal.id, }),

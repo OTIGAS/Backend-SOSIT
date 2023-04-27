@@ -1,6 +1,8 @@
 import { CompaniesRepository } from '../repositories/companies-repository';
 import { hash } from 'bcryptjs';
 import { Company } from '@prisma/client';
+import { ResourceNotFoundError } from './errors/resource-not-found-error';
+import { CompanyAlreadyExistsError } from './errors/company-already-exists';
 
 interface UpdateCompanyUseCaseRequest {
 	id: string,
@@ -48,6 +50,28 @@ export class UpdateCompanyUseCase {
 		rua,
 		numero
 	}: UpdateCompanyUseCaseRequest): Promise<UpdateCompanyUseCaseResponse> {
+
+		const companyFoundById = await this.companyRepository.findById(id);
+
+		if (!companyFoundById) {
+			throw new ResourceNotFoundError();
+		}
+
+		// console.log(companyFoundById)
+
+		// const companyWithSameCPF = await this.companyRepository.findByCNPJ(cnpj);
+
+		// console.log(companyWithSameCPF)
+
+		// const companyWithSameEmail = await this.companyRepository.findByEmail(email);
+
+		// console.log(companyWithSameEmail)
+
+		// if (companyWithSameCPF || companyWithSameEmail) {
+		// 	if (companyWithSameCPF?.id != companyFoundById.id || companyWithSameEmail?.id != companyFoundById.id) {
+		// 		throw new CompanyAlreadyExistsError();
+		// 	}
+		// }
 
 		const senha_hash = await hash(senha, 6);
 

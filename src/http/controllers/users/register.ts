@@ -54,9 +54,6 @@ export async function register(request: FastifyRequest, response: FastifyReply) 
 				message: err.message
 			});
 		}
-		else {
-
-		}
 		throw err;
 	}
 

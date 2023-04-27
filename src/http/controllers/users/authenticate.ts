@@ -35,9 +35,6 @@ export async function authenticate(request: FastifyRequest, response: FastifyRep
 				message: err.message
 			});
 		}
-		else {
-
-		}
 		throw err;
 	}
 }

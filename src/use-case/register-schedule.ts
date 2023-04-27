@@ -1,5 +1,6 @@
 import { Schedule } from '@prisma/client';
 import { SchedulesRepository } from '@/repositories/schedules-repository';
+import { ScheduleAlreadyExistsError } from './errors/schedule-already-exists';
 
 interface ScheduleUseCaseRequest {
 	nome: string;
@@ -20,6 +21,12 @@ export class RegisterScheduleUseCase {
 	async execute({
 		nome, servico, descricao, dias_semana, companyId
 	}: ScheduleUseCaseRequest): Promise<ScheduleUseCaseResponse> {
+
+		const userWithSameName = await this.schedulesRepository.findByNome(nome);
+
+		if (userWithSameName) {
+			throw new ScheduleAlreadyExistsError();
+		}
 
 		const schedule = await this.schedulesRepository.create({
 			nome: nome,

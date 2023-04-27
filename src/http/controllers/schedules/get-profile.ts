@@ -24,9 +24,6 @@ export async function get(request: FastifyRequest, response: FastifyReply) {
                 message: err.message
             });
         }
-        else {
-
-        }
         throw err;
     }
 }

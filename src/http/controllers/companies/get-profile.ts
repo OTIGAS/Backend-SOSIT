@@ -2,6 +2,7 @@ import { FastifyReply, FastifyRequest, RouteGenericInterface } from 'fastify';
 import { InvalidCredencialsError } from '@/use-case/errors/invalid-credencials-error';
 import { makeGetCompanyProfileUseCase } from '@/use-case/factories/make-get-company-profile';
 import { z } from 'zod';
+import { ResourceNotFoundError } from '@/use-case/errors/resource-not-found-error';
 
 export async function get(request: FastifyRequest, response: FastifyReply) {
 
@@ -19,13 +20,10 @@ export async function get(request: FastifyRequest, response: FastifyReply) {
         return response.status(200).send({ company });
 
     } catch (err) {
-        if (err instanceof InvalidCredencialsError) {
+        if (err instanceof ResourceNotFoundError) {
             return response.status(400).send({
                 message: err.message
             });
-        }
-        else {
-
         }
         throw err;
     }

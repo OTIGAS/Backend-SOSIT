@@ -34,8 +34,6 @@ describe('Search Schedule Use Case', () => {
 			query: 'Servico1'
 		});
 
-		console.log(schedules);
-
 		expect(schedules).toHaveLength(1);
 		expect(schedules).toEqual([
 			expect.objectContaining({ company_id: 'company-01', }),

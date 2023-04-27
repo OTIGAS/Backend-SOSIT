@@ -1,5 +1,5 @@
 export class UserAlreadyExistsError extends Error {
 	constructor() {
-		super('CPF ja cadastrado.');
+		super('CPF ou Email já cadastrado.');
 	}
 }

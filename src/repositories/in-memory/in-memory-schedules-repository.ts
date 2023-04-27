@@ -49,6 +49,16 @@ export class InMemorySchedulesRepository implements SchedulesRepository {
 		return schedule;
 	}
 
+	async findByNome(nome: string): Promise<Schedule | null> {
+		const schedule = this.items.find((item) => item.nome === nome);
+
+		if (!schedule) {
+			return null;
+		}
+
+		return schedule;
+	}
+
 	async searchMany(query: string): Promise<Schedule[]> {
 		return this.items.filter((item) => item.servico.includes(query));
 	}

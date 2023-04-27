@@ -23,6 +23,7 @@ describe('Update Schedule', () => {
 		});
 
 		const scheduleChanged = await updateScheduleUseCase.execute({
+			id: scheduleOriginal.id,
 			nome: 'Outro',
 			servico: 'Servico',
 			descricao: 'Descrição',

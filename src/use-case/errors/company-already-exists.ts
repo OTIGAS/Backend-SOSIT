@@ -1,5 +1,5 @@
 export class CompanyAlreadyExistsError extends Error {
 	constructor() {
-		super('CNPJ ja cadastrado.');
+		super('CNPJ ou Email já cadastrado.');
 	}
 }

@@ -8,6 +8,7 @@ export async function search(request: FastifyRequest, response: FastifyReply) {
     });
 
     const { query } = searchScheduleQuerySchema.parse(request.body)
+    console.log(query)
 
     const searchScheduleUseCase = makeSearchScheduleUseCase()
 

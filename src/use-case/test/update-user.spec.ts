@@ -32,9 +32,10 @@ describe('Update User', () => {
 		});
 
 		const userChanged = await updateUsersUseCase.execute({
+			id: userOriginal.id,
 			nome: 'Outro Nome',
 			email: 'outro.email@gmail.com',
-			senha: '123456',
+			senha_hash: '123456',
 			cpf: '100.000.000-00',
 			telefone: '10 0 0000-0000',
 			cep: '10000-000',
