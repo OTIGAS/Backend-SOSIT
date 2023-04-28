@@ -1,7 +1,7 @@
 import { Schedule } from '@prisma/client';
 import { SchedulesRepository } from '@repositories/schedules-repository';
 import { ResourceNotFoundError } from './errors/resource-not-found-error';
-import { ScheduleAlreadyExistsError } from './errors/schedule-already-exists';
+// import { ScheduleAlreadyExistsError } from './errors/schedule-already-exists';
 
 interface UpdateScheduleUseCaseRequest {
 	id: string;
@@ -9,8 +9,6 @@ interface UpdateScheduleUseCaseRequest {
 	servico: string;
 	descricao: string;
 	dias_semana: string[];
-
-	companyId?: string;
 }
 
 interface UpdateScheduleUseCaseResponse {
@@ -21,7 +19,7 @@ export class UpdateScheduleUseCase {
 	constructor(private schedulesRepository: SchedulesRepository) { }
 
 	async execute({
-		id, nome, servico, descricao, dias_semana, companyId
+		id, nome, servico, descricao, dias_semana
 	}: UpdateScheduleUseCaseRequest): Promise<UpdateScheduleUseCaseResponse> {
 
 		const scheduleNotFound = await this.schedulesRepository.findById(id);
@@ -37,11 +35,11 @@ export class UpdateScheduleUseCase {
 		// }
 
 		const schedule = await this.schedulesRepository.update({
+			id,
 			nome,
 			servico,
 			descricao,
 			dias_semana,
-			company_id: companyId
 		});
 
 		return {

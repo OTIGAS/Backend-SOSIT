@@ -4,10 +4,10 @@ import { makeUpdateUserUseCase } from '@use-case/factories/make-update-user';
 import { ResourceNotFoundError } from '@use-case/errors/resource-not-found-error';
 
 export async function update(request: FastifyRequest, response: FastifyReply) {
+
 	const userUpdateParamsSchema = z.object({
 		userId: z.string().uuid()
 	});
-
 
 	const userUpdateBodySchema = z.object({
 		nome: z.string(),

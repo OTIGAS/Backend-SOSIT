@@ -10,10 +10,6 @@ export async function update(request: FastifyRequest, response: FastifyReply) {
 		scheduleId: z.string().uuid()
 	});
 
-	const companyUpdateParamsSchema = z.object({
-		companyId: z.string().uuid()
-	});
-
 	const scheduleUpdateBodySchema = z.object({
 		nome: z.string(),
 		servico: z.string(),
@@ -21,18 +17,16 @@ export async function update(request: FastifyRequest, response: FastifyReply) {
 		dias_semana: z.string().array(),
 	});
 
+	const { scheduleId } = scheduleUpdateParamsSchema.parse(request.params);
+
+	const {
+		nome,
+		servico,
+		descricao,
+		dias_semana,
+	} = scheduleUpdateBodySchema.parse(request.body);
+
 	try {
-		const { scheduleId } = scheduleUpdateParamsSchema.parse(request.params);
-
-		const { companyId } = companyUpdateParamsSchema.parse(request.params);
-
-		const {
-			nome,
-			servico,
-			descricao,
-			dias_semana,
-		} = scheduleUpdateBodySchema.parse(request.body);
-
 		const updateScheduleUseCase = makeUpdateScheduleUseCase();
 
 		const updatedSchedule = await updateScheduleUseCase.execute({
@@ -41,14 +35,12 @@ export async function update(request: FastifyRequest, response: FastifyReply) {
 			servico,
 			descricao,
 			dias_semana,
-			companyId: companyId,
 		});
-
-		console.log(updatedSchedule)
 
 		return response.status(200).send({
 			schedule: updatedSchedule
 		});
+
 	} catch (error) {
 		if (error instanceof ResourceNotFoundError) {
 			return response.status(409).send({
@@ -59,7 +51,6 @@ export async function update(request: FastifyRequest, response: FastifyReply) {
 				message: error.message
 			});
 		}
-		console.log("Passei")
 		throw error;
 	}
 }

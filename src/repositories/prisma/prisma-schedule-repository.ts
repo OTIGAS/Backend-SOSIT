@@ -11,9 +11,9 @@ export class PrismaSchedulesRepository implements SchedulesRepository {
 		return schedule;
 	}
 
-	async update(data: Prisma.CompanyCreateInput): Promise<Schedule> {
+	async update(data: Prisma.ScheduleUpdateInput): Promise<Schedule> {
 		const schedule = await prisma.schedule.update({
-			where: { id: data.id },
+			where: { id: data.id as string },
 			data,
 		});
 		return schedule;

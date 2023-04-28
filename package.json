@@ -38,6 +38,7 @@
     "supertest": "6.3.3",
     "tsc-alias": "1.8.6",
     "tsconfig-paths": "4.2.0",
+    "tsx": "3.12.6",
     "typescript": "^5.0.4",
     "vite-tsconfig-paths": "4.0.8",
     "vitest": "0.30.0"
