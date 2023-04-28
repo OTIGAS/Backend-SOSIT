@@ -30,6 +30,6 @@ app.setErrorHandler((error, _, response) => {
 	}
 
 	return response.status(500).send({
-		message: 'Erro interno no server.'
+		message: error.message
 	});
 });
