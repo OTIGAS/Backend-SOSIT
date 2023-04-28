@@ -49,4 +49,11 @@ export class PrismaSchedulesRepository implements SchedulesRepository {
 		return schedules;
 	}
 
+	async delete(scheduleId: string) {
+		const schedule = await prisma.schedule.delete({
+			where: { id: scheduleId }
+		});
+		return schedule;
+	}
+
 }

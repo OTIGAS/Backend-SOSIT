@@ -50,4 +50,11 @@ export class PrismaCompaniesRepository implements CompaniesRepository {
 		const companies = await prisma.company.findMany();
 		return companies;
 	}
+
+	async delete(companyId: string) {
+		const company = await prisma.company.delete({
+			where: { id: companyId }
+		});
+		return company;
+	}
 }

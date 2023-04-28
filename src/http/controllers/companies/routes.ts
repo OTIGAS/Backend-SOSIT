@@ -6,10 +6,13 @@ import { profile } from './profile';
 import { update } from './update';
 import { getAll } from './get-all';
 import { get } from './get-profile';
+import { deleteCompany } from './delete';
 
 export async function companiesRoutes(app: FastifyInstance) {
 
 	app.post('/companies', register);
+
+	app.delete('/companies/delete/:companyId', deleteCompany);
 
 	app.post('/companies/authenticate', authenticate);
 
