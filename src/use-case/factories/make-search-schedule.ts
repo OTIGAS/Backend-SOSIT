@@ -1,4 +1,4 @@
-import { PrismaSchedulesRepository } from '@/repositories/prisma/prisma-schedule-repository';
+import { PrismaSchedulesRepository } from '@repositories/prisma/prisma-schedule-repository';
 import { SearchScheduleUseCase } from '../search-schedule';
 
 export function makeSearchScheduleUseCase() {

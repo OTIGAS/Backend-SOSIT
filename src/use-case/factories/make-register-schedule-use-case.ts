@@ -1,5 +1,5 @@
 import { RegisterScheduleUseCase } from '../register-schedule';
-import { PrismaSchedulesRepository } from '@/repositories/prisma/prisma-schedule-repository';
+import { PrismaSchedulesRepository } from '@repositories/prisma/prisma-schedule-repository';
 
 export function makeRegisterScheduleUseCase() {
 

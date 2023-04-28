@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
-import { CompanyAlreadyExistsError } from '@/use-case/errors/company-already-exists';
-import { makeRegisterCompanyUseCase } from '@/use-case/factories/make-register-company-use-case';
+import { CompanyAlreadyExistsError } from '@use-case/errors/company-already-exists';
+import { makeRegisterCompanyUseCase } from '@use-case/factories/make-register-company-use-case';
 
 
 export async function register(request: FastifyRequest, response: FastifyReply) {

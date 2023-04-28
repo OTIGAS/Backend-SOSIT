@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@lib/prisma';
 import { Company, Prisma } from '@prisma/client';
 import { CompaniesRepository } from '../companies-repository';
 

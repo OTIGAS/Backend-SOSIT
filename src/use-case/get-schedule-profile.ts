@@ -1,13 +1,13 @@
 import { Schedule } from '@prisma/client';
 import { ResourceNotFoundError } from './errors/resource-not-found-error';
-import { SchedulesRepository } from '@/repositories/schedules-repository';
+import { SchedulesRepository } from '@repositories/schedules-repository';
 
 interface GetScheduleProfileUseCaseRequest {
-    scheduleId: string;
+	scheduleId: string;
 }
 
 interface GetScheduleProfileUseCaseResponse {
-    schedule: Schedule;
+	schedule: Schedule;
 }
 
 export class GetScheduleProfileUseCase {

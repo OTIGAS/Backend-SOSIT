@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { makeGetCompanyProfileUseCase } from '@/use-case/factories/make-get-company-profile';
+import { makeGetCompanyProfileUseCase } from '@use-case/factories/make-get-company-profile';
 import { z } from 'zod';
-import { ResourceNotFoundError } from '@/use-case/errors/resource-not-found-error';
+import { ResourceNotFoundError } from '@use-case/errors/resource-not-found-error';
 
 export async function get(request: FastifyRequest, response: FastifyReply) {
 

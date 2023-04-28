@@ -1,9 +1,9 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
-import { makeRegisterScheduleUseCase } from '@/use-case/factories/make-register-schedule-use-case';
-import { ScheduleNotFoundError } from '@/use-case/errors/schedule-not-found-error';
-import { ScheduleAlreadyExistsError } from '@/use-case/errors/schedule-already-exists';
-import { makeCommitmentUseCase } from '@/use-case/factories/make-commitment-use-case';
+import { makeRegisterScheduleUseCase } from '@use-case/factories/make-register-schedule-use-case';
+import { ScheduleNotFoundError } from '@use-case/errors/schedule-not-found-error';
+import { ScheduleAlreadyExistsError } from '@use-case/errors/schedule-already-exists';
+import { makeCommitmentUseCase } from '@use-case/factories/make-commitment-use-case';
 
 export async function register(request: FastifyRequest, response: FastifyReply) {
 

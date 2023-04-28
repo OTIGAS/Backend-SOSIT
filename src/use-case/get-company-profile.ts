@@ -1,13 +1,13 @@
 import { Company } from '@prisma/client';
 import { ResourceNotFoundError } from './errors/resource-not-found-error';
-import { CompaniesRepository } from '@/repositories/companies-repository';
+import { CompaniesRepository } from '@repositories/companies-repository';
 
 interface GetCompanyProfileUseCaseRequest {
-    companyId: string;
+	companyId: string;
 }
 
 interface GetCompanyProfileUseCaseResponse {
-    company: Company;
+	company: Company;
 }
 
 export class GetCompanyProfileUseCase {

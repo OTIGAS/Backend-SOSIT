@@ -1,12 +1,12 @@
 import { Commitment } from '@prisma/client';
-import { CommitmentsRepository } from '@/repositories/commitments-repository';
+import { CommitmentsRepository } from '@repositories/commitments-repository';
 
 interface GetScheduleMetricsUseCaseRequest {
-    scheduleId: string;
+	scheduleId: string;
 }
 
 interface GetScheduleMetricsUseCaseResponse {
-    schedulesCount: number;
+	schedulesCount: number;
 }
 
 export class GetScheduleMetricsUseCase {

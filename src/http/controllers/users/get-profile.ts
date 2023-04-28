@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest, RouteGenericInterface } from 'fastify';
-import { makeGetUserProfileUseCase } from '@/use-case/factories/make-get-user-profile';
+import { makeGetUserProfileUseCase } from '@use-case/factories/make-get-user-profile';
 import { z } from 'zod';
-import { ResourceNotFoundError } from '@/use-case/errors/resource-not-found-error';
+import { ResourceNotFoundError } from '@use-case/errors/resource-not-found-error';
 
 export async function get(request: FastifyRequest, response: FastifyReply) {
 

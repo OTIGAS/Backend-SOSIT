@@ -1,5 +1,5 @@
 import { Commitment } from '@prisma/client';
-import { CommitmentsRepository } from '@/repositories/commitments-repository';
+import { CommitmentsRepository } from '@repositories/commitments-repository';
 
 interface CommitmentUseCaseRequest {
 	userId: string;

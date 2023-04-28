@@ -1,7 +1,7 @@
 import { Commitment, Prisma } from '@prisma/client';
 import { randomUUID } from 'node:crypto';
 import { CommitmentsRepository } from '../commitments-repository';
-import { CommitemntAlreadyExistingAtThisTime } from '@/use-case/errors/commitment-already-exists';
+import { CommitemntAlreadyExistingAtThisTime } from '@use-case/errors/commitment-already-exists';
 import { areIntervalsOverlapping } from 'date-fns';
 
 export class InMemoryCommitmentsRepository implements CommitmentsRepository {

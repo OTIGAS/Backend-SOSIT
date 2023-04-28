@@ -1,8 +1,8 @@
 import { FastifyReply, FastifyRequest, RouteGenericInterface } from 'fastify';
 import { z } from 'zod';
-import { ResourceNotFoundError } from '@/use-case/errors/resource-not-found-error';
-import { makeUpdateScheduleUseCase } from '@/use-case/factories/make-update-schedule';
-import { ScheduleAlreadyExistsError } from '@/use-case/errors/schedule-already-exists';
+import { ResourceNotFoundError } from '@use-case/errors/resource-not-found-error';
+import { makeUpdateScheduleUseCase } from '@use-case/factories/make-update-schedule';
+import { ScheduleAlreadyExistsError } from '@use-case/errors/schedule-already-exists';
 
 export async function update(request: FastifyRequest, response: FastifyReply) {
 

@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest, RouteGenericInterface } from 'fastify';
-import { makeGetAllUserProfileUseCase } from '@/use-case/factories/make-get-all-users';
+import { makeGetAllUserProfileUseCase } from '@use-case/factories/make-get-all-users';
 import { z } from 'zod';
-import { UsersNotFoundError } from '@/use-case/errors/users-not-found';
+import { UsersNotFoundError } from '@use-case/errors/users-not-found';
 
 export async function getAll(request: FastifyRequest, response: FastifyReply) {
 

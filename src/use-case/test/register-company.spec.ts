@@ -1,7 +1,7 @@
 import { expect, describe, it, beforeEach } from 'vitest';
 import { RegisterCompanyUseCase } from '../register-company';
 import { compare } from 'bcryptjs';
-import { InMemoryCompaniesRepository } from '@/repositories/in-memory/in-memory-comparies-repository';
+import { InMemoryCompaniesRepository } from '@repositories/in-memory/in-memory-comparies-repository';
 import { CompanyAlreadyExistsError } from '../errors/company-already-exists';
 
 let companyRepository: InMemoryCompaniesRepository;

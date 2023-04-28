@@ -1,8 +1,8 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
-import { AuthenticateCompanyUseCase } from '@/use-case/authenticate-campany';
-import { InvalidCredencialsError } from '@/use-case/errors/invalid-credencials-error';
-import { PrismaCompaniesRepository } from '@/repositories/prisma/prisma-company-repository';
+import { AuthenticateCompanyUseCase } from '@use-case/authenticate-campany';
+import { InvalidCredencialsError } from '@use-case/errors/invalid-credencials-error';
+import { PrismaCompaniesRepository } from '@repositories/prisma/prisma-company-repository';
 
 export async function authenticate(request: FastifyRequest, response: FastifyReply) {
 	const companyAuthenticateBodySchema = z.object({

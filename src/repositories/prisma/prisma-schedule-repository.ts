@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@lib/prisma';
 import { Prisma, Schedule } from '@prisma/client';
 import { SchedulesRepository } from '../schedules-repository';
 

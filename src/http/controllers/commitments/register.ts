@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
-import { makeCommitmentUseCase } from '@/use-case/factories/make-commitment-use-case';
+import { makeCommitmentUseCase } from '@use-case/factories/make-commitment-use-case';
 
 export async function register(request: FastifyRequest, response: FastifyReply) {
 

@@ -1,4 +1,4 @@
-import { SchedulesRepository } from '@/repositories/schedules-repository';
+import { SchedulesRepository } from '@repositories/schedules-repository';
 import { Schedule } from '@prisma/client';
 import { ResourceNotFoundError } from './errors/resource-not-found-error';
 import { ScheduleNotFoundError } from './errors/schedule-not-found-error'

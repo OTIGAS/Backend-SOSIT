@@ -1,5 +1,5 @@
 import { expect, describe, it, beforeEach } from 'vitest';
-import { InMemoryCommitmentsRepository } from '@/repositories/in-memory/in-memory-commitments-repository';
+import { InMemoryCommitmentsRepository } from '@repositories/in-memory/in-memory-commitments-repository';
 import { CommitmentUseCase } from '../commitment';
 import { FetchUserCommitmentHistoryUseCase } from '../fetch-user-commitment-history';
 

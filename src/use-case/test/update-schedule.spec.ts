@@ -1,5 +1,5 @@
 import { expect, describe, it, beforeEach } from 'vitest';
-import { InMemorySchedulesRepository } from '@/repositories/in-memory/in-memory-schedules-repository';
+import { InMemorySchedulesRepository } from '@repositories/in-memory/in-memory-schedules-repository';
 import { UpdateScheduleUseCase } from '../update-schedule';
 
 let scheduleRepository: InMemorySchedulesRepository;

@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { ScheduleNotFoundError } from '@/use-case/errors/schedule-not-found-error';
+import { ScheduleNotFoundError } from '@use-case/errors/schedule-not-found-error';
 import { z } from 'zod';
-import { makeGetAllScheduleProfileUseCase } from '@/use-case/factories/make-get-all-schedules';
+import { makeGetAllScheduleProfileUseCase } from '@use-case/factories/make-get-all-schedules';
 
 export async function getAll(request: FastifyRequest, response: FastifyReply) {
 

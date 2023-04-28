@@ -1,5 +1,5 @@
 import { FetchUserCommitmentHistoryUseCase } from '../fetch-user-commitment-history';
-import { PrimsaCommitmentsRepository } from '@/repositories/prisma/prisma-commitment-repository';
+import { PrimsaCommitmentsRepository } from '@repositories/prisma/prisma-commitment-repository';
 
 export function makeFetchUserCommitmentHistoryUseCase() {
 

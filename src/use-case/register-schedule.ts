@@ -1,5 +1,5 @@
 import { Schedule } from '@prisma/client';
-import { SchedulesRepository } from '@/repositories/schedules-repository';
+import { SchedulesRepository } from '@repositories/schedules-repository';
 import { ScheduleAlreadyExistsError } from './errors/schedule-already-exists';
 
 interface ScheduleUseCaseRequest {

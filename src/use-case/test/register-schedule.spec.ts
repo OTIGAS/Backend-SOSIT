@@ -1,5 +1,5 @@
 import { expect, describe, it, beforeEach } from 'vitest';
-import { InMemorySchedulesRepository } from '@/repositories/in-memory/in-memory-schedules-repository';
+import { InMemorySchedulesRepository } from '@repositories/in-memory/in-memory-schedules-repository';
 import { RegisterScheduleUseCase } from '../register-schedule';
 import { ScheduleAlreadyExistsError } from '../errors/schedule-already-exists';
 

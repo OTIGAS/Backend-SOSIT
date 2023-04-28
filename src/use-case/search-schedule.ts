@@ -1,12 +1,12 @@
 import { Schedule } from '@prisma/client';
-import { SchedulesRepository } from '@/repositories/schedules-repository';
+import { SchedulesRepository } from '@repositories/schedules-repository';
 
 interface SearchScheduleUseCaseRequest {
-    query: string;
+	query: string;
 }
 
 interface SearchScheduleUseCaseResponse {
-    schedules: Schedule[];
+	schedules: Schedule[];
 }
 
 export class SearchScheduleUseCase {

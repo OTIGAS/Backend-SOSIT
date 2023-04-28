@@ -1,9 +1,9 @@
 import { expect, describe, it, beforeEach } from 'vitest';
 import { hash } from 'bcryptjs';
-import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository';
+import { InMemoryUsersRepository } from '@repositories/in-memory/in-memory-users-repository';
 import { ResourceNotFoundError } from '../errors/resource-not-found-error';
 import { GetCompanyProfileUseCase } from '../get-company-profile';
-import { InMemoryCompaniesRepository } from '@/repositories/in-memory/in-memory-comparies-repository';
+import { InMemoryCompaniesRepository } from '@repositories/in-memory/in-memory-comparies-repository';
 
 let companyRepository: InMemoryCompaniesRepository;
 let getCompanyProfileUseCase: GetCompanyProfileUseCase;

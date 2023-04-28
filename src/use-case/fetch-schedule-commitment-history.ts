@@ -1,12 +1,12 @@
 import { Commitment } from '@prisma/client';
-import { CommitmentsRepository } from '@/repositories/commitments-repository';
+import { CommitmentsRepository } from '@repositories/commitments-repository';
 
 interface FetchScheduleCommitmentHistoryUseCaseRequest {
-    scheduleId: string;
+	scheduleId: string;
 }
 
 interface FetchScheduleCommitmentHistoryUseCaseResponse {
-    commitments: Commitment[];
+	commitments: Commitment[];
 }
 
 export class FetchScheduleCommitmentHistoryUseCase {

@@ -1,7 +1,7 @@
 import { expect, describe, it, beforeEach } from 'vitest';
 import { hash } from 'bcryptjs';
 import { AuthenticateCompanyUseCase } from '../authenticate-campany';
-import { InMemoryCompaniesRepository } from '@/repositories/in-memory/in-memory-comparies-repository';
+import { InMemoryCompaniesRepository } from '@repositories/in-memory/in-memory-comparies-repository';
 import { InvalidCredencialsError } from '../errors/invalid-credencials-error';
 
 let companyRepository: InMemoryCompaniesRepository;

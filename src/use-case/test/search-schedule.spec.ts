@@ -1,5 +1,5 @@
 import { expect, describe, it, beforeEach } from 'vitest';
-import { InMemorySchedulesRepository } from '@/repositories/in-memory/in-memory-schedules-repository';
+import { InMemorySchedulesRepository } from '@repositories/in-memory/in-memory-schedules-repository';
 import { SearchScheduleUseCase } from '../search-schedule';
 
 let commitmentRepository: InMemorySchedulesRepository;

@@ -1,6 +1,6 @@
 import { expect, describe, it, beforeEach } from 'vitest';
 import { hash } from 'bcryptjs';
-import { InMemorySchedulesRepository } from '@/repositories/in-memory/in-memory-schedules-repository';
+import { InMemorySchedulesRepository } from '@repositories/in-memory/in-memory-schedules-repository';
 import { ResourceNotFoundError } from '../errors/resource-not-found-error';
 import { GetScheduleProfileUseCase } from '../get-schedule-profile';
 import { RegisterScheduleUseCase } from '../register-schedule';

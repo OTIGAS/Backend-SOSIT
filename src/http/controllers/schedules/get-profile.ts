@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { InvalidCredencialsError } from '@/use-case/errors/invalid-credencials-error';
+import { InvalidCredencialsError } from '@use-case/errors/invalid-credencials-error';
 import { z } from 'zod';
-import { makeGetScheduleProfileUseCase } from '@/use-case/factories/make-get-schedule-profile';
+import { makeGetScheduleProfileUseCase } from '@use-case/factories/make-get-schedule-profile';
 
 export async function get(request: FastifyRequest, response: FastifyReply) {
 

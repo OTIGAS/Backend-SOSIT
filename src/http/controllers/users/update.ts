@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest, RouteGenericInterface } from 'fastify';
 import { z } from 'zod';
-import { makeUpdateUserUseCase } from '@/use-case/factories/make-update-user';
-import { ResourceNotFoundError } from '@/use-case/errors/resource-not-found-error';
+import { makeUpdateUserUseCase } from '@use-case/factories/make-update-user';
+import { ResourceNotFoundError } from '@use-case/errors/resource-not-found-error';
 
 export async function update(request: FastifyRequest, response: FastifyReply) {
 	const userUpdateParamsSchema = z.object({

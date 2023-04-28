@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@lib/prisma';
 import { Prisma, Commitment } from '@prisma/client';
 import { CommitmentsRepository } from '../commitments-repository';
 

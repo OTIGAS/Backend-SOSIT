@@ -1,6 +1,6 @@
 import { Company } from '@prisma/client';
 import { CompaniesNotFoundError } from './errors/companies-not-found';
-import { CompaniesRepository } from '@/repositories/companies-repository';
+import { CompaniesRepository } from '@repositories/companies-repository';
 
 interface GetCompanyProfileUseCaseResponse {
     companies: Company[];

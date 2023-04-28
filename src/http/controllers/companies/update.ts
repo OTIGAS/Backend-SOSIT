@@ -1,8 +1,8 @@
 import { FastifyReply, FastifyRequest, RouteGenericInterface } from 'fastify';
 import { z } from 'zod';
-import { makeUpdateCompanyUseCase } from '@/use-case/factories/make-update-company';
-import { ResourceNotFoundError } from '@/use-case/errors/resource-not-found-error';
-import { CompanyAlreadyExistsError } from '@/use-case/errors/company-already-exists';
+import { makeUpdateCompanyUseCase } from '@use-case/factories/make-update-company';
+import { ResourceNotFoundError } from '@use-case/errors/resource-not-found-error';
+import { CompanyAlreadyExistsError } from '@use-case/errors/company-already-exists';
 
 interface UpdateRequestParams extends RouteGenericInterface {
 	Params: {

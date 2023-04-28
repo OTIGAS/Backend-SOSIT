@@ -1,4 +1,4 @@
-import { PrimsaCommitmentsRepository } from '@/repositories/prisma/prisma-commitment-repository';
+import { PrimsaCommitmentsRepository } from '@repositories/prisma/prisma-commitment-repository';
 import { CommitmentUseCase } from '../commitment';
 
 export function makeCommitmentUseCase() {

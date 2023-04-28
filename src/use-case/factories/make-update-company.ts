@@ -1,4 +1,4 @@
-import { PrismaCompaniesRepository } from '@/repositories/prisma/prisma-company-repository';
+import { PrismaCompaniesRepository } from '@repositories/prisma/prisma-company-repository';
 import { UpdateCompanyUseCase } from '../update-company';
 
 export function makeUpdateCompanyUseCase() {
