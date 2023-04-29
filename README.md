@@ -11,8 +11,8 @@
 - [x] Deve ser possível obter as informações da empresa;
 - [x] Deve ser possível obter as informações do usuário;
 
-- [] Deve ser possível excluir o cadastro do usuário;
-- [] Deve ser possível excluir o cadastro do empresa;
+- [x] Deve ser possível excluir o cadastro do usuário;
+- [x] Deve ser possível excluir o cadastro do empresa;
 
 - [x] Deve ser possível cadastrar a agenda;
 - [x] Deve ser possível obter as informações da agenda;
@@ -21,7 +21,7 @@
 
 - [x] Deve ser possível marcar compromissos na agenda;
 
-- [] Deve ser possível desmarcar compromissos na agenda;
+- [x] Deve ser possível desmarcar compromissos na agenda;
 
 - [x] Deve ser possível obter o historioco de compromissos;
 
@@ -36,8 +36,8 @@
 ## RNF (Requisitos não funcionais)
 
 - [x] A senha do usuário e da empresa precisam estar criptografada;
-- [] Os dados da aplicação precisam estar persistidos em um banco PostgreSQL;
+- [x] Os dados da aplicação precisam estar persistidos em um banco PostgreSQL;
 
 
 <!-- - [] Todas listas de dados precisam estar paginadas com 20 itens por páginas; -->
-- [] O usuário deve ser identificado por um JWT (JSON Web Token);
+- [x] O usuário deve ser identificado por um JWT (JSON Web Token);
