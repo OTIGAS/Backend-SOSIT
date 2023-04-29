@@ -2,6 +2,7 @@ import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 import { makeRegisterScheduleUseCase } from '@use-case/factories/make-register-schedule-use-case';
 import { ScheduleAlreadyExistsError } from '@use-case/errors/schedule-already-exists';
+import { makeGetCompanyProfileUseCase } from '@use-case/factories/make-get-company-profile';
 
 export async function register(request: FastifyRequest, response: FastifyReply) {
 

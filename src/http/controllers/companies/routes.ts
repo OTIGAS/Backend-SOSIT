@@ -18,7 +18,7 @@ export async function companiesRoutes(app: FastifyInstance) {
 
 	app.patch('/companies/update/:companyId', update);
 
-	app.get('/companies/get-profile/:companyId', get);
+	app.get('/companies/get/:companyId', get);
 
 	app.get('/companies/get-all-companies/', getAll);
 

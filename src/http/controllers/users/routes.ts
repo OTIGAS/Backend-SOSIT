@@ -19,7 +19,7 @@ export async function usersRoutes(app: FastifyInstance) {
 
 	app.get('/users/get-all-users', getAll);
 
-	app.get('/users/get-profile/:userId', get);
+	app.get('/users/get/:userId', get);
 
 	// app.get('/users/me', { onRequest: [verifyJWT] }, profile)
 
