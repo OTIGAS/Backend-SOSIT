@@ -77,8 +77,12 @@ export const HomeMainContent = styled.main`
             cursor: pointer;
             transition: 0.2s;
 
-            :hover {
+            &:hover {
                 background-color: ${props => props.theme['blue']};
+            }
+
+            &:focus {
+                box-shadow: none;
             }
 
             a {
@@ -117,6 +121,10 @@ export const FormContent = styled.form`
             border: 1px solid ${props => props.theme['blue-light']};
 
             padding: 0.75rem;
+
+            ::placeholder {
+                color: ${props => props.theme['gray-500']};
+            }
         }
 
         a {
@@ -125,7 +133,7 @@ export const FormContent = styled.form`
 
             transition: 0.2s;
 
-            :hover {
+            &:hover {
                 color: ${props => props.theme['blue-light']};
             }
         }
@@ -150,7 +158,16 @@ export const ButtonQueryContent = styled.button`
     cursor: pointer;
     transition: 0.2s;
 
-    :hover {
+    &:disabled {
+        opacity: 0.70;
+        cursor: not-allowed;
+    }
+
+    &:hover {
         background-color: ${props => props.theme['blue']};
+    }
+
+    &:focus {
+        box-shadow: none;
     }
 `

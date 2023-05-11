@@ -26,10 +26,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/fastify-cors": "2.1.0",
     "@types/node": "^18.15.11",
     "@types/supertest": "2.0.12",
     "@typescript-eslint/eslint-plugin": "5.57.1",
     "@typescript-eslint/parser": "5.57.1",
+    "@vitejs/plugin-legacy": "4.0.3",
     "@vitest/coverage-c8": "0.30.0",
     "@vitest/ui": "0.30.0",
     "eslint": "8.38.0",
@@ -51,6 +53,7 @@
     "date-fns": "2.29.3",
     "dotenv": "16.0.3",
     "fastify": "^4.15.0",
+    "fastify-cors": "6.1.0",
     "zod": "3.21.4"
   }
 }

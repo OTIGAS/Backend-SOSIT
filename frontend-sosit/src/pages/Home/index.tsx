@@ -1,8 +1,23 @@
 import { NavLink } from "react-router-dom"
 
 import { ButtonQueryContent, FormContent, HomeMainContent } from "./styles"
+import { useEffect } from "react"
 
 export function Home() {
+    const getCompany = async () => {
+            fetch("http://localhost:3333/companies/get-all-companies/")
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log(data);
+                })
+      }
+      
+      useEffect(() => {
+        getCompany();
+      }, []);
+      
+      
+
     return (
         <HomeMainContent>
             <div className="description-content">
@@ -31,11 +46,11 @@ export function Home() {
             <FormContent action="">
                 <label>Fazer Login</label>
                 <div>
-                    <input type="text" placeholder="Email: example@email.com"/>
+                    <input type="email" placeholder="Email: example@email.com"/>
                     <input type="password" placeholder="Senha"/>
                     <NavLink to="/">esqueceu sua senha?</NavLink>   
                 </div>
-                <ButtonQueryContent type="submit">
+                <ButtonQueryContent disabled type="submit">
                     Avançar
                 </ButtonQueryContent>
             </FormContent>

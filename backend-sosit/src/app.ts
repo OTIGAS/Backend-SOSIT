@@ -1,7 +1,11 @@
-import { ZodError } from 'zod';
 import fastify from 'fastify';
-import { env } from './env';
 import fastifyJwt from '@fastify/jwt';
+import fastifyCors from 'fastify-cors';
+
+import { env } from './env';
+
+import { ZodError } from 'zod';
+
 import { usersRoutes } from './http/controllers/users/routes';
 import { companiesRoutes } from './http/controllers/companies/routes';
 import { scheduleRoutes } from './http/controllers/schedules/routes';
@@ -13,6 +17,14 @@ app.register(fastifyJwt, {
 	secret: env.JWT_SECRET,
 });
 
+app.register(fastifyCors, {
+	origin: true,
+	methods: ['GET', 'PUT', 'POST', 'DELETE'],
+	credentials: true,
+	preflightContinue: true,
+});
+
+
 app.register(usersRoutes);
 app.register(companiesRoutes);
 app.register(scheduleRoutes);
@@ -21,7 +33,8 @@ app.register(commitmentRoutes);
 app.setErrorHandler((error, _, response) => {
 	if (error instanceof ZodError) {
 		return response.status(400).send({
-			message: 'Erro na validação.', problema: error.format()
+			message: 'Erro na validação.',
+			problema: error.format(),
 		});
 	}
 	if (env.NODE_ENV !== 'production') {
@@ -32,6 +45,7 @@ app.setErrorHandler((error, _, response) => {
 	}
 
 	return response.status(500).send({
-		message: error.message
+		message: error.message,
 	});
 });
+
