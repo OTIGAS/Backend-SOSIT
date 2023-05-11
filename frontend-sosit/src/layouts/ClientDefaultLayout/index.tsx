@@ -1,14 +1,22 @@
-import { Outlet } from "react-router-dom"
+import { NavLink, Outlet } from "react-router-dom"
+
+import { LayoutContainer, NavContent } from "./styles";
 
 import { Header } from "../../components/Header";
-import { LayoutContainer } from "./styles";
 
  export function DefaultLayout() {
     return (
         <>
             <LayoutContainer>
                 <Header />
-                <Outlet />
+                <NavContent>
+                    <NavLink to="/query">Buscar</NavLink>
+                    <NavLink to="/history">Histórico</NavLink>
+                    <NavLink to="/update-profile">Perfil</NavLink>
+                </NavContent>
+                <main>
+                    <Outlet />
+                </main>
             </LayoutContainer>
         </>
     )
