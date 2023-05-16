@@ -1,22 +1,28 @@
+import { useState } from 'react'
 import { NavLink } from "react-router-dom"
 
 import { ButtonQueryContent, FormContent, HomeMainContent } from "./styles"
-import { useEffect } from "react"
+import { useContext } from 'react';
+import { UserContext } from '../../contexts/UserContext';
 
-export function Home() {
-    const getCompany = async () => {
-            fetch("http://localhost:3333/companies/get-all-companies/")
-                .then((res) => res.json())
-                .then((data) => {
-                    console.log(data);
-                })
-      }
-      
-      useEffect(() => {
-        getCompany();
-      }, []);
-      
-      
+function initialState() {
+    return { email: "", password: "" }
+}
+
+
+export function Home() { 
+    const { handleLogin } = useContext(UserContext)
+    
+    const [values, setValues] = useState(initialState)
+
+    function onChange(event: any) {
+        const { value, name } = event.target;
+
+        setValues({
+            ...values,
+            [name]: value
+        })
+    }
 
     return (
         <HomeMainContent>
@@ -46,11 +52,25 @@ export function Home() {
             <FormContent action="">
                 <label>Fazer Login</label>
                 <div>
-                    <input type="email" placeholder="Email: example@email.com"/>
-                    <input type="password" placeholder="Senha"/>
+                    <input 
+                        id="email" 
+                        type="email" 
+                        name="email" 
+                        placeholder="Email: example@email.com" 
+                        onChange={onChange}
+                        value={values.email}
+                    />
+                    <input 
+                        id="password" 
+                        type="password" 
+                        name="password" 
+                        placeholder="Senha" 
+                        onChange={onChange}
+                        value={values.password}
+                    />
                     <NavLink to="/">esqueceu sua senha?</NavLink>   
                 </div>
-                <ButtonQueryContent disabled type="submit">
+                <ButtonQueryContent type="button" onClick={() => handleLogin(values.email,values.password)}>
                     Avançar
                 </ButtonQueryContent>
             </FormContent>

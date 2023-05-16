@@ -1,6 +1,6 @@
 import fastify from 'fastify';
 import fastifyJwt from '@fastify/jwt';
-import fastifyCors from 'fastify-cors';
+import fastifyCors from '@fastify/cors';
 
 import { env } from './env';
 
@@ -18,12 +18,9 @@ app.register(fastifyJwt, {
 });
 
 app.register(fastifyCors, {
-	origin: true,
-	methods: ['GET', 'PUT', 'POST', 'DELETE'],
+	origin: 'http://localhost:5173',
 	credentials: true,
-	preflightContinue: true,
 });
-
 
 app.register(usersRoutes);
 app.register(companiesRoutes);
@@ -48,4 +45,3 @@ app.setErrorHandler((error, _, response) => {
 		message: error.message,
 	});
 });
-

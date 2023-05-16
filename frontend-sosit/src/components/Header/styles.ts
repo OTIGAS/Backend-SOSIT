@@ -87,7 +87,7 @@ export const HeaderContent = styled.header`
         }
     }
 
-    /* nav:hover ul {
+    nav:hover ul {
         display: flex;
-    } */
+    }
 `
