@@ -1,19 +1,24 @@
 import { ThemeProvider } from "styled-components";
 import { BrowserRouter } from "react-router-dom"
-import { Router } from "./Router";
 
 import { defaultTheme } from "./styles/themes/default";
 import { GlobalStyle } from "./styles/global";
-import { UserProvider } from "./contexts/UserContext";
+
+import { PrivateRoutes } from "./Routes/private.routes";
+import { PublicRoutes } from "./Routes/public.routes";
+
+interface User {
+  nome: string
+}
+
+let auth: User
 
 export function App() {
   
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
-        <UserProvider>
-          <Router />
-        </UserProvider>
+          {auth ? <PrivateRoutes /> : <PublicRoutes />}
       </BrowserRouter>
       <GlobalStyle /> 
     </ThemeProvider>

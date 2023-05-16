@@ -2,16 +2,12 @@ import { useState } from 'react'
 import { NavLink } from "react-router-dom"
 
 import { ButtonQueryContent, FormContent, HomeMainContent } from "./styles"
-import { useContext } from 'react';
-import { UserContext } from '../../contexts/UserContext';
 
 function initialState() {
     return { email: "", password: "" }
 }
 
-
-export function Home() { 
-    const { handleLogin } = useContext(UserContext)
+export function Login() { 
     
     const [values, setValues] = useState(initialState)
 
@@ -70,7 +66,7 @@ export function Home() {
                     />
                     <NavLink to="/">esqueceu sua senha?</NavLink>   
                 </div>
-                <ButtonQueryContent type="button" onClick={() => handleLogin(values.email,values.password)}>
+                <ButtonQueryContent type="button">
                     Avançar
                 </ButtonQueryContent>
             </FormContent>

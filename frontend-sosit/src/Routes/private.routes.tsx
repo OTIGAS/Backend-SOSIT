@@ -1,20 +1,16 @@
 import { Routes, Route} from "react-router-dom"
 
-import { CustomerDefaultLayout } from "./layouts/CustomerDefaultLayout"
+import { CustomerDefaultLayout } from "../layouts/CustomerDefaultLayout"
+import { Query } from "../pages/Customer/Query"
+import { History } from "../pages/Customer/History"
+import { UpdateProfile } from "../pages/Customer/UpdateProfile"
 
-import { Home } from "./pages/Home"
+import { CompanyDefaultLayout } from "../layouts/CompanyDefaultLayout"
+import { Schedule } from "../pages/Company/Schedule"
 
-import { Query } from "./pages/Customer/Query/index"
-import { History } from "./pages/Customer/History/index"
-import { UpdateProfile } from "./pages/Customer/UpdateProfile/index"
-
-import { Schedule } from "./pages/Company/Schedule"
-import { CompanyDefaultLayout } from "./layouts/CompanyDefaultLayout"
-
-export function Router() {
+export function PrivateRoutes() {
     return (
         <Routes>
-            <Route path="/" element={<Home />} />
             <Route path="/" element={<CustomerDefaultLayout />}>
                 <Route path="/query" element={<Query />}/>
                 <Route path="/history" element={<History />}/>
