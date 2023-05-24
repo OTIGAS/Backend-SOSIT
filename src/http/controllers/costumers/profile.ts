@@ -3,16 +3,16 @@ import { FastifyReply, FastifyRequest } from 'fastify';
 
 export async function profile(request: FastifyRequest, response: FastifyReply) {
 
-	const getCostumerProfile = makeGetCostumerProfileUseCase();
+	// const getCostumerProfile = makeGetCostumerProfileUseCase();
 
-	const { costumer } = await getCostumerProfile.execute({
-		costumerId: request.costumer.sub
-	});
+	// const { costumer } = await getCostumerProfile.execute({
+	// 	costumerId: request.user.sub
+	// });
 
-	return response.status(200).send({
-		costumer: {
-			...costumer,
-			senha_hash: undefined
-		}
-	});
+	// return response.status(200).send({
+	// 	costumer: {
+	// 		...costumer,
+	// 		senha_hash: undefined
+	// 	}
+	// });
 }
