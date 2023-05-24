@@ -1,0 +1,48 @@
+import { FastifyReply, FastifyRequest } from 'fastify';
+import { z } from 'zod';
+import { makeCommitmentUseCase } from '@use-case/factories/make-commitment-use-case';
+
+export async function register(request: FastifyRequest, response: FastifyReply) {
+
+	const scheduleRegisterParamsSchema = z.object({
+		scheduleId: z.string().uuid()
+	});
+
+	const costumerRegisterParamsSchema = z.object({
+		costumerId: z.string().uuid()
+	});
+
+	const scheduleRegisterBodySchema = z.object({
+		startDateTime: z.string(),
+		endDateTime: z.string(),
+	});
+
+	const { scheduleId } = scheduleRegisterParamsSchema.parse(request.params);
+	const { costumerId } = costumerRegisterParamsSchema.parse(request.params);
+
+	const {
+		startDateTime,
+		endDateTime
+	} = scheduleRegisterBodySchema.parse(request.body);
+
+	try {
+		const registerCommitmnetUseCase = makeCommitmentUseCase();
+
+		await registerCommitmnetUseCase.execute({
+			costumerId,
+			scheduleId,
+			startDateTime,
+			endDateTime
+		});
+
+	} catch (err) {
+		if (err) {
+			return response.status(409).send({
+				message: err
+			});
+		}
+		throw err;
+	}
+
+	return response.status(201).send();
+}

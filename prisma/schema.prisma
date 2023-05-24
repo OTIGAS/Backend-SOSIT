@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Costumer {
+  id         String @id @default(uuid())
+  nome       String
+  email      String @unique
+  senha_hash String
+  cpf        String @unique
+
+  telefone   String
+  cep        String
+  estado     String
+  cidade     String
+  rua        String
+  numero     String
+  nascimento String
+
+  commitment Commitment[]
+
+  @@map("costumers")
+}
+
+model Company {
+  id            String @id @default(uuid())
+  nome_fantasia String
+  razao_social  String
+  email         String @unique
+  senha_hash    String
+  cnpj          String @unique
+
+  sobre         String
+  img_perfil    String
+  link_google   String
+  telefone      String
+  email_contato String
+  nome_contato  String
+  cep           String
+  estado        String
+  cidade        String
+  rua           String
+  numero        String
+
+  schedule Schedule[]
+
+  @@map("companies")
+}
+
+model Schedule {
+  id          String   @id @default(uuid())
+  nome        String   @unique
+  servico     String
+  descricao   String
+  dias_semana String[]
+
+  horarios_seg String[]
+  horarios_ter String[]
+  horarios_qua String[]
+  horarios_qui String[]
+  horarios_sex String[]
+  horarios_sab String[]
+
+  criado_em DateTime @default(now())
+
+  company    Company @relation(fields: [company_id], references: [id])
+  company_id String
+
+  commitment Commitment[]
+
+  @@map("schedules")
+}
+
+model Commitment {
+  id              String   @id @default(uuid())
+  start_date_time DateTime
+  end_date_time   DateTime
+
+  costumer    Costumer @relation(fields: [costumer_id], references: [id])
+  costumer_id String
+
+  schedule    Schedule @relation(fields: [schedule_id], references: [id])
+  schedule_id String
+}
