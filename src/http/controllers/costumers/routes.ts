@@ -13,14 +13,14 @@ export async function costumersRoutes(app: FastifyInstance) {
 
 	app.post('/costumers/authenticate', authenticate);
 
-	app.delete('/costumers/delete/:costumerId', deleteCostumer);
+	app.delete('/costumers/:costumerId', deleteCostumer);
 
-	app.patch('/costumers/update/:costumerId', update);
+	app.patch('/costumers/:costumerId', update);
 
-	app.get('/costumers/get-all-costumers', getAll);
+	app.get('/costumers/all', getAll);
 
-	app.get('/costumers/get/:costumerId', get);
+	app.get('/costumers/:costumerId', get);
 
-	// app.get('/costumers/me', { onRequest: [verifyJWT] }, profile)
+	app.get('/costumers/me', { onRequest: [verifyJWT] }, profile)
 
 }  

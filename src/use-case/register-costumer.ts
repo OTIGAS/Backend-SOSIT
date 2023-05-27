@@ -1,6 +1,7 @@
 import { CostumersRepository } from '@repositories/costumers-repository';
 import { hash } from 'bcryptjs';
 import { Costumer } from '@prisma/client';
+import { CostumerAlreadyExistsError } from './errors/costumer-already-exists';
 
 interface RegisterCostumerUseCaseRequest {
 	nome: string,
@@ -38,6 +39,14 @@ export class RegisterCostumerUseCase {
 	}: RegisterCostumerUseCaseRequest): Promise<RegisterCostumerUseCaseResponse> {
 
 		const senha_hash = await hash(senha, 6);
+
+		const costumerWithSameEmail = await this.costumerRepository.findByEmail(email);
+
+		const costumerWithSameCPF = await this.costumerRepository.findByCPF(cpf);
+
+		if (costumerWithSameEmail || costumerWithSameCPF) {
+			throw new CostumerAlreadyExistsError();
+		}
 
 		const costumer = await this.costumerRepository.create({
 			nome,

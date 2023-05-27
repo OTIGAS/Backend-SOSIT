@@ -22,17 +22,26 @@ export async function update(request: FastifyRequest<UpdateRequestParams>, respo
 		email: z.string().email(),
 		senha: z.string().min(6),
 		cnpj: z.string(),
+
 		sobre: z.string(),
 		img_perfil: z.string(),
 		link_google: z.string(),
+
 		telefone: z.string(),
 		email_contato: z.string(),
 		nome_contato: z.string(),
+
 		cep: z.string(),
 		estado: z.string(),
 		cidade: z.string(),
 		rua: z.string(),
 		numero: z.string(),
+
+		banco: z.string(),
+		agencia: z.string(),
+		digito: z.string(),
+		tipo_conta: z.string(),
+		conta: z.string()
 	});
 
 	try {
@@ -44,39 +53,59 @@ export async function update(request: FastifyRequest<UpdateRequestParams>, respo
 			email,
 			senha,
 			cnpj,
+
 			sobre,
 			img_perfil,
 			link_google,
+
 			telefone,
 			email_contato,
 			nome_contato,
+
 			cep,
 			estado,
 			cidade,
 			rua,
-			numero
+			numero,
+
+			banco,
+			agencia,
+			digito,
+			tipo_conta,
+			conta
 		} = companyUpdateBodySchema.parse(request.body);
 
 		const updateCompanyUseCase = makeUpdateCompanyUseCase();
+
+		console.log(senha)
 
 		const updatedCompany = await updateCompanyUseCase.execute({
 			id: companyId,
 			nome_fantasia,
 			razao_social,
 			email,
-			senha,
+			senha_hash: senha,
 			cnpj,
+
 			sobre,
 			img_perfil,
 			link_google,
+
 			telefone,
 			email_contato,
 			nome_contato,
+
 			cep,
 			estado,
 			cidade,
 			rua,
-			numero
+			numero,
+
+			banco,
+			agencia,
+			digito,
+			tipo_conta,
+			conta
 		});
 
 		return response.status(200).send({

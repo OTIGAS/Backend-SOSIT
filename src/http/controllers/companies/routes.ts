@@ -20,8 +20,10 @@ export async function companiesRoutes(app: FastifyInstance) {
 
 	app.get('/companies/get/:companyId', get);
 
-	app.get('/companies/get-all-companies/', getAll);
+	app.get('/companies/get-all-companies', getAll);
 
-	// app.get('/companies/me', { onRequest: [verifyJWT] }, profile)
+	app.get('/companies/get-by-name-companies', getAll);
+
+	app.get('/companies/me', { onRequest: [verifyJWT] }, profile)
 
 }  

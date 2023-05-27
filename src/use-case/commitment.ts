@@ -1,12 +1,12 @@
 import { Commitment } from '@prisma/client';
 import { CommitmentsRepository } from '@repositories/commitments-repository';
+import { UnavailableSchedule } from './errors/unavailable-schedule';
 
 interface CommitmentUseCaseRequest {
 	costumerId: string;
 	scheduleId: string;
 	startDateTime: string;
 	endDateTime: string;
-
 }
 
 interface CommitmentUseCaseResponse {
@@ -30,14 +30,14 @@ export class CommitmentUseCase {
 		);
 
 		if (commitmentOnSameDate) {
-			throw new Error();
+			throw new UnavailableSchedule();
 		}
 
 		const commitment = await this.commitmentsRepository.create({
 			costumer_id: costumerId,
 			schedule_id: scheduleId,
-			start_date_time: startDateTime,
-			end_date_time: endDateTime
+			start_date_time: new Date(startDateTime),
+			end_date_time: new Date(endDateTime)
 		});
 
 		if (!commitment) {

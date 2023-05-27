@@ -11,17 +11,26 @@ export async function register(request: FastifyRequest, response: FastifyReply) 
 		email: z.string().email(),
 		senha: z.string().min(6),
 		cnpj: z.string(),
+
 		sobre: z.string(),
 		img_perfil: z.string(),
 		link_google: z.string(),
+
 		telefone: z.string(),
 		email_contato: z.string(),
 		nome_contato: z.string(),
+
 		cep: z.string(),
 		estado: z.string(),
 		cidade: z.string(),
 		rua: z.string(),
 		numero: z.string(),
+
+		banco: z.string(),
+		agencia: z.string(),
+		digito: z.string(),
+		tipo_conta: z.string(),
+		conta: z.string()
 	});
 
 	const {
@@ -30,17 +39,26 @@ export async function register(request: FastifyRequest, response: FastifyReply) 
 		email,
 		senha,
 		cnpj,
+
 		sobre,
 		img_perfil,
 		link_google,
+
 		telefone,
 		email_contato,
 		nome_contato,
+
 		cep,
 		estado,
 		cidade,
 		rua,
-		numero
+		numero,
+
+		banco,
+		agencia,
+		digito,
+		tipo_conta,
+		conta
 	} = companyRegisteBodySchema.parse(request.body);
 
 	try {
@@ -52,17 +70,26 @@ export async function register(request: FastifyRequest, response: FastifyReply) 
 			email,
 			senha,
 			cnpj,
+
 			sobre,
 			img_perfil,
 			link_google,
+
 			telefone,
 			email_contato,
 			nome_contato,
+
 			cep,
 			estado,
 			cidade,
 			rua,
-			numero
+			numero,
+
+			banco,
+			agencia,
+			digito,
+			tipo_conta,
+			conta
 		});
 	} catch (err) {
 		if (err instanceof CompanyAlreadyExistsError) {

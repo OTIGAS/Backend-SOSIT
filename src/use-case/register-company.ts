@@ -4,26 +4,35 @@ import { CompanyAlreadyExistsError } from './errors/company-already-exists';
 import { Company } from '@prisma/client';
 
 interface RegisterCompanyUseCaseRequest {
-    nome_fantasia: string,
-    razao_social: string,
-    email: string,
-    senha: string,
-    cnpj: string,
-    sobre: string,
-    img_perfil: string,
-    link_google: string,
-    telefone: string,
-    email_contato: string,
-    nome_contato: string,
-    cep: string,
-    estado: string,
-    cidade: string,
-    rua: string,
-    numero: string,
+	nome_fantasia: string,
+	razao_social: string,
+	email: string,
+	senha: string,
+	cnpj: string,
+
+	sobre: string,
+	img_perfil: string,
+	link_google: string,
+
+	telefone: string,
+	email_contato: string,
+	nome_contato: string,
+
+	cep: string,
+	estado: string,
+	cidade: string,
+	rua: string,
+	numero: string,
+
+	banco: string,
+	agencia: string,
+	digito: string,
+	tipo_conta: string,
+	conta: string
 }
 
 interface RegisterCompanyUseCaseResponse {
-    company: Company;
+	company: Company;
 }
 
 export class RegisterCompanyUseCase {
@@ -35,24 +44,35 @@ export class RegisterCompanyUseCase {
 		email,
 		senha,
 		cnpj,
+
 		sobre,
 		img_perfil,
 		link_google,
+
 		telefone,
 		email_contato,
 		nome_contato,
+
 		cep,
 		estado,
 		cidade,
 		rua,
-		numero
+		numero,
+
+		banco,
+		agencia,
+		digito,
+		tipo_conta,
+		conta
 	}: RegisterCompanyUseCaseRequest): Promise<RegisterCompanyUseCaseResponse> {
 
 		const senha_hash = await hash(senha, 6);
 
+		const companyWithSameEmail = await this.companyRepository.findByEmail(email);
+
 		const companyWithSameCNPJ = await this.companyRepository.findByCNPJ(cnpj);
 
-		if (companyWithSameCNPJ) {
+		if (companyWithSameEmail || companyWithSameCNPJ) {
 			throw new CompanyAlreadyExistsError();
 		}
 
@@ -62,17 +82,26 @@ export class RegisterCompanyUseCase {
 			email,
 			senha_hash,
 			cnpj,
+
 			sobre,
 			img_perfil,
 			link_google,
+
 			telefone,
 			email_contato,
 			nome_contato,
+
 			cep,
 			estado,
 			cidade,
 			rua,
-			numero
+			numero,
+
+			banco,
+			agencia,
+			digito,
+			tipo_conta,
+			conta
 		});
 
 		return { company };

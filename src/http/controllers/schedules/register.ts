@@ -7,7 +7,7 @@ import { makeGetCompanyProfileUseCase } from '@use-case/factories/make-get-compa
 export async function register(request: FastifyRequest, response: FastifyReply) {
 
 	const scheduleRegisterParamsSchema = z.object({
-		companyId: z.string().uuid()
+		companyId: z.string().uuid(),
 	});
 
 	const scheduleRegisterBodySchema = z.object({
@@ -17,7 +17,9 @@ export async function register(request: FastifyRequest, response: FastifyReply) 
 		dias_semana: z.string().array(),
 	});
 
-	const { companyId } = scheduleRegisterParamsSchema.parse(request.params);
+	const requestData = { companyId: request.user.sub };
+
+	const { companyId } = scheduleRegisterParamsSchema.parse(requestData);
 
 	const {
 		nome,

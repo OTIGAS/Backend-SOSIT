@@ -6,6 +6,14 @@ import { ScheduleAlreadyExistsError } from '@use-case/errors/schedule-already-ex
 
 export async function update(request: FastifyRequest, response: FastifyReply) {
 
+	const companyGetParamsSchema = z.object({
+		companyId: z.string().uuid(),
+	});
+
+	const requestData = { companyId: request.user.sub };
+
+	const { companyId } = companyGetParamsSchema.parse(requestData);
+
 	const scheduleUpdateParamsSchema = z.object({
 		scheduleId: z.string().uuid()
 	});
@@ -15,6 +23,13 @@ export async function update(request: FastifyRequest, response: FastifyReply) {
 		servico: z.string(),
 		descricao: z.string(),
 		dias_semana: z.string().array(),
+
+		horarios_seg: z.string().array(),
+		horarios_ter: z.string().array(),
+		horarios_qua: z.string().array(),
+		horarios_qui: z.string().array(),
+		horarios_sex: z.string().array(),
+		horarios_sab: z.string().array(),
 	});
 
 	const { scheduleId } = scheduleUpdateParamsSchema.parse(request.params);
@@ -24,6 +39,13 @@ export async function update(request: FastifyRequest, response: FastifyReply) {
 		servico,
 		descricao,
 		dias_semana,
+
+		horarios_seg,
+		horarios_ter,
+		horarios_qua,
+		horarios_qui,
+		horarios_sex,
+		horarios_sab
 	} = scheduleUpdateBodySchema.parse(request.body);
 
 	try {
@@ -35,6 +57,15 @@ export async function update(request: FastifyRequest, response: FastifyReply) {
 			servico,
 			descricao,
 			dias_semana,
+
+			horarios_seg,
+			horarios_ter,
+			horarios_qua,
+			horarios_qui,
+			horarios_sex,
+			horarios_sab,
+
+			companyId
 		});
 
 		return response.status(200).send({

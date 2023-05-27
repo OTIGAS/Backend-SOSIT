@@ -1,7 +1,7 @@
 import { Schedule } from '@prisma/client';
 import { SchedulesRepository } from '@repositories/schedules-repository';
 import { ResourceNotFoundError } from './errors/resource-not-found-error';
-// import { ScheduleAlreadyExistsError } from './errors/schedule-already-exists';
+import { ScheduleAlreadyExistsError } from './errors/schedule-already-exists';
 
 interface UpdateScheduleUseCaseRequest {
 	id: string;
@@ -9,6 +9,15 @@ interface UpdateScheduleUseCaseRequest {
 	servico: string;
 	descricao: string;
 	dias_semana: string[];
+
+	companyId: string;
+
+	horarios_seg: string[];
+	horarios_ter: string[];
+	horarios_qua: string[];
+	horarios_qui: string[];
+	horarios_sex: string[];
+	horarios_sab: string[];
 }
 
 interface UpdateScheduleUseCaseResponse {
@@ -19,7 +28,7 @@ export class UpdateScheduleUseCase {
 	constructor(private schedulesRepository: SchedulesRepository) { }
 
 	async execute({
-		id, nome, servico, descricao, dias_semana
+		id, nome, servico, descricao, dias_semana, companyId
 	}: UpdateScheduleUseCaseRequest): Promise<UpdateScheduleUseCaseResponse> {
 
 		const scheduleNotFound = await this.schedulesRepository.findById(id);
@@ -28,11 +37,13 @@ export class UpdateScheduleUseCase {
 			throw new ResourceNotFoundError();
 		}
 
-		// const costumerWithSameName = await this.schedulesRepository.findByNome(nome);
+		const costumerWithSameName = await this.schedulesRepository.findByNomeAndCompany(nome, companyId);
 
-		// if (costumerWithSameName) {
-		// 	throw new ScheduleAlreadyExistsError();
-		// }
+		if (costumerWithSameName) {
+			if (costumerWithSameName?.id != id) {
+				throw new ScheduleAlreadyExistsError();
+			}
+		}
 
 		const schedule = await this.schedulesRepository.update({
 			id,

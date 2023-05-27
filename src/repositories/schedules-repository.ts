@@ -5,7 +5,7 @@ export interface SchedulesRepository {
     delete(scheduleId: string): Promise<Schedule>
     update(data: Prisma.ScheduleUpdateInput): Promise<Schedule>
     findById(id: string): Promise<Schedule | null>
-    findByNome(nome: string): Promise<Schedule | null>
-    searchMany(query: string): Promise<Schedule[]>
+    findByNomeAndCompany(nome: string, companyId: string): Promise<Schedule | null>
     getAll(): Promise<Schedule[]>
+    getByService(query: string): Promise<Schedule[]>
 }

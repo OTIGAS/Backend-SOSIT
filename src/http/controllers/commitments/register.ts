@@ -1,15 +1,19 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 import { makeCommitmentUseCase } from '@use-case/factories/make-commitment-use-case';
+import { UnavailableSchedule } from '@use-case/errors/unavailable-schedule';
 
 export async function register(request: FastifyRequest, response: FastifyReply) {
 
-	const scheduleRegisterParamsSchema = z.object({
-		scheduleId: z.string().uuid()
-	});
-
 	const costumerRegisterParamsSchema = z.object({
 		costumerId: z.string().uuid()
+	});
+
+	const requestData = { costumerId: request.user.sub };
+
+
+	const scheduleRegisterParamsSchema = z.object({
+		scheduleId: z.string().uuid()
 	});
 
 	const scheduleRegisterBodySchema = z.object({
@@ -18,7 +22,8 @@ export async function register(request: FastifyRequest, response: FastifyReply) 
 	});
 
 	const { scheduleId } = scheduleRegisterParamsSchema.parse(request.params);
-	const { costumerId } = costumerRegisterParamsSchema.parse(request.params);
+
+	const { costumerId } = costumerRegisterParamsSchema.parse(requestData);
 
 	const {
 		startDateTime,
@@ -36,9 +41,9 @@ export async function register(request: FastifyRequest, response: FastifyReply) 
 		});
 
 	} catch (err) {
-		if (err) {
+		if (err instanceof UnavailableSchedule) {
 			return response.status(409).send({
-				message: err
+				message: err.message
 			});
 		}
 		throw err;

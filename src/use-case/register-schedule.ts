@@ -22,7 +22,7 @@ export class RegisterScheduleUseCase {
 		nome, servico, descricao, dias_semana, companyId
 	}: ScheduleUseCaseRequest): Promise<ScheduleUseCaseResponse> {
 
-		const costumerWithSameName = await this.schedulesRepository.findByNome(nome);
+		const costumerWithSameName = await this.schedulesRepository.findByNomeAndCompany(nome, companyId);
 
 		if (costumerWithSameName) {
 			throw new ScheduleAlreadyExistsError();

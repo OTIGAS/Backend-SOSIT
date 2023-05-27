@@ -35,17 +35,25 @@ model Company {
   senha_hash    String
   cnpj          String @unique
 
-  sobre         String
-  img_perfil    String
-  link_google   String
+  sobre       String
+  img_perfil  String
+  link_google String
+
   telefone      String
   email_contato String
   nome_contato  String
-  cep           String
-  estado        String
-  cidade        String
-  rua           String
-  numero        String
+
+  cep    String
+  estado String
+  cidade String
+  rua    String
+  numero String
+
+  banco      String
+  agencia    String
+  digito     String
+  tipo_conta String
+  conta      String
 
   schedule Schedule[]
 
@@ -54,7 +62,7 @@ model Company {
 
 model Schedule {
   id          String   @id @default(uuid())
-  nome        String   @unique
+  nome        String
   servico     String
   descricao   String
   dias_semana String[]

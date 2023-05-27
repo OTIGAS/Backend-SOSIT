@@ -34,13 +34,15 @@ export class UpdateCostumerUseCase {
 			throw new ResourceNotFoundError();
 		}
 
-		// const costumerWithSameCPF = await this.costumerRepository.findByCPF(data.cpf);
+		const costumerWithSameEmail = await this.costumerRepository.findByEmail(data.email);
 
-		// const costumerWithSameEmail = await this.costumerRepository.findByEmail(data.email);
+		const costumerWithSameCPF = await this.costumerRepository.findByCPF(data.cpf);
 
-		// if (costumerWithSameCPF?.id != costumerFoundNyId.id || costumerWithSameEmail?.id != costumerFoundNyId.id) {
-		// 	throw new CostumerAlreadyExistsError();
-		// }
+		if (costumerWithSameEmail || costumerWithSameCPF) {
+			if (costumerWithSameEmail?.id != data.id || costumerWithSameCPF?.id != data.id) {
+				throw new CostumerAlreadyExistsError();
+			}
+		}
 
 		const senha_hash = await hash(data.senha_hash, 6);
 

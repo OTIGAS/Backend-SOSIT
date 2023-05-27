@@ -1,5 +1,5 @@
 import { prisma } from '@lib/prisma';
-import { Prisma, Schedule } from '@prisma/client';
+import { Company, Prisma, Schedule } from '@prisma/client';
 import { SchedulesRepository } from '../schedules-repository';
 
 export class PrismaSchedulesRepository implements SchedulesRepository {
@@ -26,14 +26,17 @@ export class PrismaSchedulesRepository implements SchedulesRepository {
 		return schedule;
 	}
 
-	async findByNome(nome: string) {
-		const schedule = await prisma.schedule.findUnique({
-			where: { nome },
+	async findByNomeAndCompany(nome: string, companyId: string) {
+		const schedule = await prisma.schedule.findFirst({
+			where: {
+				nome,
+				company_id: companyId,
+			},
 		});
 		return schedule;
 	}
 
-	async searchMany(query: string): Promise<Schedule[]> {
+	async getByService(query: string): Promise<Schedule[]> {
 		const schedules = await prisma.schedule.findMany({
 			where: {
 				servico: {

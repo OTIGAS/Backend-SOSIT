@@ -4,21 +4,23 @@ import { update } from './update';
 import { get } from './get-profile';
 import { FastifyInstance } from 'fastify';
 import { verifyJWT } from '../../middlewares/verify-jwt';
-import { search } from './seach';
+import { getByService } from './get-by-service';
 import { deleteSchedule } from './delete';
 
 export async function scheduleRoutes(app: FastifyInstance) {
 
 	app.addHook('onRequest', verifyJWT);
 
-	app.post('/companies/:companyId/schedules', register);
+	app.post('/schedules', register);
 
-	app.delete('/companies/:companyId/schedules/:scheduleId', deleteSchedule);
+	app.delete('/schedules/:scheduleId', deleteSchedule);
 
-	app.get('/companies/:companyId/get-all-schedules', getAll);
+	app.patch('/schedules/update/:scheduleId', update);
 
-	app.get('/companies/:companyId/get-schedule/:scheduleId', get);
+	app.get('/schedules/all', getAll);
 
-	app.patch('/companies/:companyId/update/:scheduleId', update);
+	app.get('/schedule/:scheduleId', get);
+
+	app.post('/schedules/get-by-service', getByService);
 
 }   

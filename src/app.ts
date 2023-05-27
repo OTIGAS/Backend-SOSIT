@@ -1,6 +1,7 @@
 import fastify from 'fastify';
-
 import cors from '@fastify/cors';
+import fastifyJwt from '@fastify/jwt';
+
 
 import { env } from './env';
 
@@ -19,6 +20,10 @@ app.register(cors, {
 	allowedHeaders: 'X-CSRF-Token, X-Requested-With, Content-Type, Authorization',
 	credentials: true,
 });
+
+app.register(fastifyJwt, {
+	secret: env.JWT_SECRET
+})
 
 app.register(costumersRoutes);
 app.register(companiesRoutes);

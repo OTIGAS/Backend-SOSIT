@@ -35,6 +35,11 @@ CREATE TABLE "companies" (
     "cidade" TEXT NOT NULL,
     "rua" TEXT NOT NULL,
     "numero" TEXT NOT NULL,
+    "banco" TEXT NOT NULL,
+    "agencia" TEXT NOT NULL,
+    "digito" TEXT NOT NULL,
+    "tipo_conta" TEXT NOT NULL,
+    "conta" TEXT NOT NULL,
 
     CONSTRAINT "companies_pkey" PRIMARY KEY ("id")
 );
@@ -80,9 +85,6 @@ CREATE UNIQUE INDEX "companies_email_key" ON "companies"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "companies_cnpj_key" ON "companies"("cnpj");
-
--- CreateIndex
-CREATE UNIQUE INDEX "schedules_nome_key" ON "schedules"("nome");
 
 -- AddForeignKey
 ALTER TABLE "schedules" ADD CONSTRAINT "schedules_company_id_fkey" FOREIGN KEY ("company_id") REFERENCES "companies"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
