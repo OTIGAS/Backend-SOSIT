@@ -9,8 +9,9 @@ export async function get(request: FastifyRequest, response: FastifyReply) {
 		costumerId: z.string().uuid()
 	});
 
+	const { costumerId } = costumerUpdateParamsSchema.parse(request.params);
+
 	try {
-		const { costumerId } = costumerUpdateParamsSchema.parse(request.params);
 
 		const getCostumerProfileUseCase = makeGetCostumerProfileUseCase();
 

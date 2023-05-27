@@ -9,8 +9,9 @@ export async function get(request: FastifyRequest, response: FastifyReply) {
 		companyId: z.string().uuid()
 	});
 
+	const { companyId } = companyGetParamsSchema.parse(request.params);
+
 	try {
-		const { companyId } = companyGetParamsSchema.parse(request.params);
 
 		const getCompanyProfileUseCase = makeGetCompanyProfileUseCase();
 

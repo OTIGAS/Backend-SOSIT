@@ -13,7 +13,7 @@ interface CommitmentUseCaseResponse {
 	commitment: Commitment;
 }
 
-export class CommitmentUseCase {
+export class RegisterCommitmentUseCase {
 	constructor(private commitmentsRepository: CommitmentsRepository) { }
 
 	async execute({

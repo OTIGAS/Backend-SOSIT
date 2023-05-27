@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
-import { makeCommitmentUseCase } from '@use-case/factories/make-commitment-use-case';
+import { makeRegisterCommitmentUseCase } from '@use-case/factories/make-register-commitment-use-case';
 import { UnavailableSchedule } from '@use-case/errors/unavailable-schedule';
 
 export async function register(request: FastifyRequest, response: FastifyReply) {
@@ -31,7 +31,7 @@ export async function register(request: FastifyRequest, response: FastifyReply) 
 	} = scheduleRegisterBodySchema.parse(request.body);
 
 	try {
-		const registerCommitmnetUseCase = makeCommitmentUseCase();
+		const registerCommitmnetUseCase = makeRegisterCommitmentUseCase();
 
 		await registerCommitmnetUseCase.execute({
 			costumerId,

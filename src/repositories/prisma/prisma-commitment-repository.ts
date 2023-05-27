@@ -4,6 +4,20 @@ import { CommitmentsRepository } from '../commitments-repository';
 
 export class PrimsaCommitmentsRepository implements CommitmentsRepository {
 
+	async delete(commitmentId: string) {
+		const commitment = await prisma.commitment.delete({
+			where: { id: commitmentId }
+		});
+		return commitment;
+	}
+
+	async findById(commitmentId: string): Promise<Commitment | null> {
+		const commitment = await prisma.commitment.findUnique({
+			where: { id: commitmentId },
+		});
+		return commitment;
+	}
+
 	async create(data: Prisma.CommitmentUncheckedCreateInput) {
 		const commitment = await prisma.commitment.create({
 			data,

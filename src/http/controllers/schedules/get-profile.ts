@@ -9,8 +9,9 @@ export async function get(request: FastifyRequest, response: FastifyReply) {
 		scheduleId: z.string().uuid()
 	});
 
+	const { scheduleId } = scheduleGetParamsSchema.parse(request.params);
+
 	try {
-		const { scheduleId } = scheduleGetParamsSchema.parse(request.params);
 
 		const getScheduleProfileUseCase = makeGetScheduleProfileUseCase();
 
