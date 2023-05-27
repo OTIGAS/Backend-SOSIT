@@ -1,5 +1,5 @@
 import { prisma } from '@lib/prisma';
-import { Company, Prisma, Schedule } from '@prisma/client';
+import { Prisma, Schedule } from '@prisma/client';
 import { SchedulesRepository } from '../schedules-repository';
 
 export class PrismaSchedulesRepository implements SchedulesRepository {

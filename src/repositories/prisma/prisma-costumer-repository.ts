@@ -1,5 +1,5 @@
 import { prisma } from '@lib/prisma';
-import { Prisma, Schedule } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import { CostumersRepository } from '../costumers-repository';
 
 export class PrismaCostumersRepository implements CostumersRepository {
@@ -56,27 +56,6 @@ export class PrismaCostumersRepository implements CostumersRepository {
 			where: { id: costumerId }
 		});
 		return costumer;
-	}
-
-	async findSchedulesByCompanyNomeFantasia(nomeFantasia: string) {
-		const companies = await prisma.company.findMany({
-			where: {
-				nome_fantasia: nomeFantasia,
-			},
-			include: {
-				schedule: true, // Inclui os relacionamentos com Schedules
-			},
-		});
-
-		const schedules: Schedule[] = [];
-
-		companies.forEach((company) => {
-			if (company.schedule) {
-				schedules.push(...company.schedule);
-			}
-		});
-
-		return schedules;
 	}
 
 }
