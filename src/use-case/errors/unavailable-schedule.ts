@@ -1,5 +1,5 @@
 export class UnavailableSchedule extends Error {
-    constructor() {
-        super('Horário indisponível.');
-    }
+	constructor() {
+		super('Horário indisponível.');
+	}
 }

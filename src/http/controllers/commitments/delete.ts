@@ -4,20 +4,20 @@ import { z } from 'zod';
 
 export async function deleteCommitment(request: FastifyRequest, response: FastifyReply) {
 
-    const commitmentGetParamsSchema = z.object({
-        commitmentId: z.string().uuid()
-    });
+	const commitmentGetParamsSchema = z.object({
+		commitmentId: z.string().uuid()
+	});
 
-    const { commitmentId } = commitmentGetParamsSchema.parse(request.params);
+	const { commitmentId } = commitmentGetParamsSchema.parse(request.params);
 
-    try {
-        const deleteCommitmentUseCase = makeDeleteCommitmentUseCase();
+	try {
+		const deleteCommitmentUseCase = makeDeleteCommitmentUseCase();
 
-        await deleteCommitmentUseCase.execute({ commitmentId });
+		await deleteCommitmentUseCase.execute({ commitmentId });
 
-    } catch (err) {
-        throw err;
-    }
+	} catch (err) {
+		throw err;
+	}
 
-    return response.status(204).send({ message: 'Compromisso deletado com sucesso!' });
+	return response.status(204).send({ message: 'Compromisso deletado com sucesso!' });
 }

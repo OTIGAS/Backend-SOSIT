@@ -77,7 +77,7 @@ export async function update(request: FastifyRequest<UpdateRequestParams>, respo
 
 		const updateCompanyUseCase = makeUpdateCompanyUseCase();
 
-		console.log(senha)
+		console.log(senha);
 
 		const updatedCompany = await updateCompanyUseCase.execute({
 			id: companyId,

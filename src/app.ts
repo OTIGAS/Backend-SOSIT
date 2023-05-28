@@ -23,7 +23,7 @@ app.register(cors, {
 
 app.register(fastifyJwt, {
 	secret: env.JWT_SECRET
-})
+});
 
 app.register(costumersRoutes);
 app.register(companiesRoutes);

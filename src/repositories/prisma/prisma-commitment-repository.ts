@@ -3,6 +3,10 @@ import { Prisma, Commitment } from '@prisma/client';
 import { CommitmentsRepository } from '../commitments-repository';
 
 export class PrimsaCommitmentsRepository implements CommitmentsRepository {
+	async getAll(): Promise<Commitment[]> {
+		const commitments = await prisma.commitment.findMany();
+		return commitments;
+	}
 
 	async delete(commitmentId: string) {
 		const commitment = await prisma.commitment.delete({

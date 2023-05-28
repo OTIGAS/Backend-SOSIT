@@ -21,6 +21,6 @@ export async function costumersRoutes(app: FastifyInstance) {
 
 	app.get('/costumers/:costumerId', get);
 
-	app.get('/costumers/me', { onRequest: [verifyJWT] }, profile)
+	app.get('/costumers/me', { onRequest: [verifyJWT] }, profile);
 
 }  

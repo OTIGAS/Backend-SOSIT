@@ -5,26 +5,26 @@ import { makeGetCommitmentProfileUseCase } from '@use-case/factories/make-get-co
 
 export async function get(request: FastifyRequest, response: FastifyReply) {
 
-    const commitmentGetParamsSchema = z.object({
-        commitmentId: z.string().uuid()
-    });
+	const commitmentGetParamsSchema = z.object({
+		commitmentId: z.string().uuid()
+	});
 
-    const { commitmentId } = commitmentGetParamsSchema.parse(request.params);
+	const { commitmentId } = commitmentGetParamsSchema.parse(request.params);
 
-    try {
+	try {
 
-        const getCommitmentProfileUseCase = makeGetCommitmentProfileUseCase();
+		const getCommitmentProfileUseCase = makeGetCommitmentProfileUseCase();
 
-        const { commitment } = await getCommitmentProfileUseCase.execute({ commitmentId });
+		const { commitment } = await getCommitmentProfileUseCase.execute({ commitmentId });
 
-        return response.status(200).send({ commitment });
+		return response.status(200).send({ commitment });
 
-    } catch (err) {
-        if (err instanceof InvalidCredencialsError) {
-            return response.status(400).send({
-                message: err.message
-            });
-        }
-        throw err;
-    }
+	} catch (err) {
+		if (err instanceof InvalidCredencialsError) {
+			return response.status(400).send({
+				message: err.message
+			});
+		}
+		throw err;
+	}
 }
