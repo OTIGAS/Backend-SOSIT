@@ -5,8 +5,8 @@ export interface CommitmentsRepository {
     delete(commitmentId: string): Promise<Commitment>
     findById(commitmentId: string): Promise<Commitment | null>
     getAll(): Promise<Commitment[]>
-    findByCostumerIdOnDate(costumerId: string, startDateTime: Date, endDateTime: Date): Promise<Commitment | null>
-    findManyByCostumerId(costumerId: string): Promise<Commitment[]>
+    findByCustomerIdOnDate(customerId: string, startDateTime: Date, endDateTime: Date): Promise<Commitment | null>
+    findManyByCustomerId(customerId: string): Promise<Commitment[]>
     findManyByScheduleId(scheduleId: string): Promise<Commitment[]>
     countByScheduleId(scheduleId: string): Promise<number>
 } 

@@ -5,11 +5,11 @@ import { UnavailableSchedule } from '@use-case/errors/unavailable-schedule';
 
 export async function register(request: FastifyRequest, response: FastifyReply) {
 
-	const costumerRegisterParamsSchema = z.object({
-		costumerId: z.string().uuid()
+	const customerRegisterParamsSchema = z.object({
+		customerId: z.string().uuid()
 	});
 
-	const requestData = { costumerId: request.user.sub };
+	const requestData = { customerId: request.user.sub };
 
 
 	const scheduleRegisterParamsSchema = z.object({
@@ -23,7 +23,7 @@ export async function register(request: FastifyRequest, response: FastifyReply) 
 
 	const { scheduleId } = scheduleRegisterParamsSchema.parse(request.params);
 
-	const { costumerId } = costumerRegisterParamsSchema.parse(requestData);
+	const { customerId } = customerRegisterParamsSchema.parse(requestData);
 
 	const {
 		startDateTime,
@@ -34,7 +34,7 @@ export async function register(request: FastifyRequest, response: FastifyReply) 
 		const registerCommitmnetUseCase = makeRegisterCommitmentUseCase();
 
 		await registerCommitmnetUseCase.execute({
-			costumerId,
+			customerId,
 			scheduleId,
 			startDateTime,
 			endDateTime

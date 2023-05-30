@@ -3,7 +3,7 @@ import { CommitmentsRepository } from '@repositories/commitments-repository';
 import { UnavailableSchedule } from './errors/unavailable-schedule';
 
 interface CommitmentUseCaseRequest {
-	costumerId: string;
+	customerId: string;
 	scheduleId: string;
 	startDateTime: string;
 	endDateTime: string;
@@ -17,14 +17,14 @@ export class RegisterCommitmentUseCase {
 	constructor(private commitmentsRepository: CommitmentsRepository) { }
 
 	async execute({
-		costumerId,
+		customerId,
 		scheduleId,
 		startDateTime,
 		endDateTime
 	}: CommitmentUseCaseRequest): Promise<CommitmentUseCaseResponse> {
 
-		const commitmentOnSameDate = await this.commitmentsRepository.findByCostumerIdOnDate(
-			costumerId,
+		const commitmentOnSameDate = await this.commitmentsRepository.findByCustomerIdOnDate(
+			customerId,
 			new Date(startDateTime),
 			new Date(endDateTime)
 		);
@@ -34,7 +34,7 @@ export class RegisterCommitmentUseCase {
 		}
 
 		const commitment = await this.commitmentsRepository.create({
-			costumer_id: costumerId,
+			customer_id: customerId,
 			schedule_id: scheduleId,
 			start_date_time: new Date(startDateTime),
 			end_date_time: new Date(endDateTime)

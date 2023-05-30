@@ -11,7 +11,7 @@ export class InMemoryCommitmentsRepository implements CommitmentsRepository {
 	async create(data: Prisma.CommitmentUncheckedCreateInput): Promise<Commitment | null> {
 		const commitment: Commitment = {
 			id: data.id ?? randomUUID(),
-			costumer_id: data.costumer_id,
+			customer_id: data.customer_id,
 			schedule_id: data.schedule_id,
 			start_date_time: new Date(data.start_date_time),
 			end_date_time: new Date(data.end_date_time)
@@ -22,9 +22,9 @@ export class InMemoryCommitmentsRepository implements CommitmentsRepository {
 		return commitment;
 	}
 
-	async findByCostumerIdOnDate(costumerId: string, startDate: Date, endDate: Date): Promise<Commitment | null> {
+	async findByCustomerIdOnDate(customerId: string, startDate: Date, endDate: Date): Promise<Commitment | null> {
 
-		const commitmentOnSameDate = this.items.find((item) => item.costumer_id === costumerId);
+		const commitmentOnSameDate = this.items.find((item) => item.customer_id === customerId);
 
 		if (!commitmentOnSameDate) {
 			return null;
@@ -44,8 +44,8 @@ export class InMemoryCommitmentsRepository implements CommitmentsRepository {
 		return commitmentOnSameDate;
 	}
 
-	async findManyByCostumerId(costumerId: string) {
-		return this.items.filter((item) => item.costumer_id === costumerId);
+	async findManyByCustomerId(customerId: string) {
+		return this.items.filter((item) => item.customer_id === customerId);
 	}
 
 	async findManyByScheduleId(scheduleId: string) {

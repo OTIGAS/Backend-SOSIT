@@ -3,25 +3,25 @@ import { CompaniesNotFoundError } from './errors/companies-not-found';
 import { Company } from '@prisma/client';
 
 interface DeleteCompanyUseCaseRequest {
-    companyId: string;
+	companyId: string;
 }
 
 interface DeleteCompanyUseCaseResponse {
-    company: Company;
+	company: Company;
 }
 
 export class DeleteCompanyUseCase {
-	constructor(private costumerRepository: CompaniesRepository) { }
+	constructor(private companyRepository: CompaniesRepository) { }
 
 	async execute({ companyId }: DeleteCompanyUseCaseRequest): Promise<DeleteCompanyUseCaseResponse> {
 
-		const company = await this.costumerRepository.findById(companyId);
+		const company = await this.companyRepository.findById(companyId);
 
 		if (!company) {
 			throw new CompaniesNotFoundError();
 		}
 
-		await this.costumerRepository.delete(companyId);
+		await this.companyRepository.delete(companyId);
 
 		return { company };
 	}

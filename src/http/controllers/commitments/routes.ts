@@ -20,7 +20,7 @@ export async function commitmentRoutes(app: FastifyInstance) {
 
 	app.get('/commitment/get-all-commitments', getAll);
 
-	app.get('/commitment/schedules/history-costumer', historyCustomer);
+	app.get('/commitment/schedules/history-customer', historyCustomer);
 
 	app.get('/commitment/schedules/history-schedule/:scheduleId', historySchedule);
 

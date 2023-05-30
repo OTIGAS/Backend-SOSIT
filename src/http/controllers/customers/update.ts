@@ -1,15 +1,15 @@
 import { FastifyReply, FastifyRequest, RouteGenericInterface } from 'fastify';
 import { z } from 'zod';
-import { makeUpdateCostumerUseCase } from '@use-case/factories/make-update-costumer';
+import { makeUpdateCustomerUseCase } from '@use-case/factories/make-update-customer';
 import { ResourceNotFoundError } from '@use-case/errors/resource-not-found-error';
 
 export async function update(request: FastifyRequest, response: FastifyReply) {
 
-	const costumerUpdateParamsSchema = z.object({
-		costumerId: z.string().uuid()
+	const customerUpdateParamsSchema = z.object({
+		customerId: z.string().uuid()
 	});
 
-	const costumerUpdateBodySchema = z.object({
+	const customerUpdateBodySchema = z.object({
 		nome: z.string(),
 		email: z.string().email(),
 		senha: z.string().min(6),
@@ -24,7 +24,7 @@ export async function update(request: FastifyRequest, response: FastifyReply) {
 	});
 
 	try {
-		const { costumerId } = costumerUpdateParamsSchema.parse(request.params);
+		const { customerId } = customerUpdateParamsSchema.parse(request.params);
 
 		const {
 			nome,
@@ -38,12 +38,12 @@ export async function update(request: FastifyRequest, response: FastifyReply) {
 			rua,
 			numero,
 			nascimento,
-		} = costumerUpdateBodySchema.parse(request.body);
+		} = customerUpdateBodySchema.parse(request.body);
 
-		const updateCostumerUseCase = makeUpdateCostumerUseCase();
+		const updateCustomerUseCase = makeUpdateCustomerUseCase();
 
-		const updatedCostumer = await updateCostumerUseCase.execute({
-			id: costumerId,
+		const updatedCustomer = await updateCustomerUseCase.execute({
+			id: customerId,
 			nome,
 			email,
 			senha_hash: senha,
@@ -58,7 +58,7 @@ export async function update(request: FastifyRequest, response: FastifyReply) {
 		});
 
 		return response.status(200).send({
-			costumer: updatedCostumer
+			customer: updatedCustomer
 		});
 	} catch (error) {
 		if (error instanceof ResourceNotFoundError) {

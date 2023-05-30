@@ -29,10 +29,10 @@ export class PrimsaCommitmentsRepository implements CommitmentsRepository {
 		return commitment;
 	}
 
-	async findByCostumerIdOnDate(costumerId: string, startDateTime: Date, endDateTime: Date) {
+	async findByCustomerIdOnDate(customerId: string, startDateTime: Date, endDateTime: Date) {
 		const commitment = await prisma.commitment.findFirst({
 			where: {
-				costumer_id: costumerId,
+				customer_id: customerId,
 				AND: [
 					{
 						start_date_time: {
@@ -51,10 +51,10 @@ export class PrimsaCommitmentsRepository implements CommitmentsRepository {
 		return commitment;
 	}
 
-	async findManyByCostumerId(costumerId: string) {
+	async findManyByCustomerId(customerId: string) {
 		const commitments = await prisma.commitment.findMany({
 			where: {
-				costumer_id: costumerId,
+				customer_id: customerId,
 			},
 		});
 		return commitments;

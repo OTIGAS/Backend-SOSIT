@@ -1,5 +1,5 @@
 -- CreateTable
-CREATE TABLE "costumers" (
+CREATE TABLE "customers" (
     "id" TEXT NOT NULL,
     "nome" TEXT NOT NULL,
     "email" TEXT NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE "costumers" (
     "numero" TEXT NOT NULL,
     "nascimento" TEXT NOT NULL,
 
-    CONSTRAINT "costumers_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "customers_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -68,17 +68,17 @@ CREATE TABLE "Commitment" (
     "id" TEXT NOT NULL,
     "start_date_time" TIMESTAMP(3) NOT NULL,
     "end_date_time" TIMESTAMP(3) NOT NULL,
-    "costumer_id" TEXT NOT NULL,
+    "customer_id" TEXT NOT NULL,
     "schedule_id" TEXT NOT NULL,
 
     CONSTRAINT "Commitment_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "costumers_email_key" ON "costumers"("email");
+CREATE UNIQUE INDEX "customers_email_key" ON "customers"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "costumers_cpf_key" ON "costumers"("cpf");
+CREATE UNIQUE INDEX "customers_cpf_key" ON "customers"("cpf");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "companies_email_key" ON "companies"("email");
@@ -90,7 +90,7 @@ CREATE UNIQUE INDEX "companies_cnpj_key" ON "companies"("cnpj");
 ALTER TABLE "schedules" ADD CONSTRAINT "schedules_company_id_fkey" FOREIGN KEY ("company_id") REFERENCES "companies"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Commitment" ADD CONSTRAINT "Commitment_costumer_id_fkey" FOREIGN KEY ("costumer_id") REFERENCES "costumers"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Commitment" ADD CONSTRAINT "Commitment_customer_id_fkey" FOREIGN KEY ("customer_id") REFERENCES "customers"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Commitment" ADD CONSTRAINT "Commitment_schedule_id_fkey" FOREIGN KEY ("schedule_id") REFERENCES "schedules"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

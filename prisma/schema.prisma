@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Costumer {
+model Customer {
   id         String @id @default(uuid())
   nome       String
   email      String @unique
@@ -24,7 +24,7 @@ model Costumer {
 
   commitment Commitment[]
 
-  @@map("costumers")
+  @@map("customers")
 }
 
 model Company {
@@ -89,8 +89,8 @@ model Commitment {
   start_date_time DateTime
   end_date_time   DateTime
 
-  costumer    Costumer @relation(fields: [costumer_id], references: [id])
-  costumer_id String
+  customer    Customer @relation(fields: [customer_id], references: [id])
+  customer_id String
 
   schedule    Schedule @relation(fields: [schedule_id], references: [id])
   schedule_id String

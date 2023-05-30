@@ -1,25 +1,25 @@
 import { FastifyReply, FastifyRequest, RouteGenericInterface } from 'fastify';
-import { makeGetCostumerProfileUseCase } from '@use-case/factories/make-get-costumer-profile';
+import { makeGetCustomerProfileUseCase } from '@use-case/factories/make-get-customer-profile';
 import { z } from 'zod';
 import { ResourceNotFoundError } from '@use-case/errors/resource-not-found-error';
 
 export async function get(request: FastifyRequest, response: FastifyReply) {
 
-	const costumerUpdateParamsSchema = z.object({
-		costumerId: z.string().uuid()
+	const customerUpdateParamsSchema = z.object({
+		customerId: z.string().uuid()
 	});
 
-	const { costumerId } = costumerUpdateParamsSchema.parse(request.params);
+	const { customerId } = customerUpdateParamsSchema.parse(request.params);
 
 	try {
 
-		const getCostumerProfileUseCase = makeGetCostumerProfileUseCase();
+		const getCustomerProfileUseCase = makeGetCustomerProfileUseCase();
 
-		const { costumer } = await getCostumerProfileUseCase.execute({ costumerId });
+		const { customer } = await getCustomerProfileUseCase.execute({ customerId });
 
 		return response.status(200).send({
-			costumer: {
-				...costumer,
+			customer: {
+				...customer,
 				senha_hash: undefined
 			}
 		});

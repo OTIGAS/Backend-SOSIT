@@ -1,4 +1,4 @@
-export class CostumerAlreadyExistsError extends Error {
+export class CustomerAlreadyExistsError extends Error {
 	constructor() {
 		super('CPF ou Email já cadastrado.');
 	}

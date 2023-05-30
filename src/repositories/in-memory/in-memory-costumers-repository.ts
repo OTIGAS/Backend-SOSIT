@@ -1,13 +1,13 @@
-import { Prisma, Costumer } from '@prisma/client';
-import { CostumersRepository } from '../costumers-repository';
+import { Prisma, Customer } from '@prisma/client';
+import { CustomersRepository } from '../customers-repository';
 import { randomUUID } from 'node:crypto';
 
-export class InMemoryCostumersRepository implements CostumersRepository {
+export class InMemoryCustomersRepository implements CustomersRepository {
 
-	public items: Costumer[] = [];
+	public items: Customer[] = [];
 
-	async create(data: Prisma.CostumerCreateInput): Promise<Costumer> {
-		const costumer = {
+	async create(data: Prisma.CustomerCreateInput): Promise<Customer> {
+		const customer = {
 			id: data.id ?? randomUUID(),
 			nome: data.nome,
 			email: data.email,
@@ -23,58 +23,58 @@ export class InMemoryCostumersRepository implements CostumersRepository {
 			criado_em: new Date(),
 		};
 
-		this.items.push(costumer);
+		this.items.push(customer);
 
-		return costumer;
+		return customer;
 	}
 
-	async update(costumer: Prisma.CostumerCreateInput): Promise<Costumer> {
-		const costumerIndex = this.items.findIndex(costumer => costumer.id === costumer.id);
+	async update(customer: Prisma.CustomerCreateInput): Promise<Customer> {
+		const customerIndex = this.items.findIndex(customer => customer.id === customer.id);
 
-		if (costumerIndex >= 0) {
-			this.items[costumerIndex].nome = costumer.nome?.toString() ?? this.items[costumerIndex].nome;
-			this.items[costumerIndex].email = costumer.email?.toString() ?? this.items[costumerIndex].email;
-			this.items[costumerIndex].senha_hash = costumer.senha_hash?.toString() ?? this.items[costumerIndex].senha_hash;
-			this.items[costumerIndex].cpf = costumer.cpf?.toString() ?? this.items[costumerIndex].cpf;
-			this.items[costumerIndex].telefone = costumer.telefone?.toString() ?? this.items[costumerIndex].telefone;
-			this.items[costumerIndex].cep = costumer.cep?.toString() ?? this.items[costumerIndex].cep;
-			this.items[costumerIndex].estado = costumer.estado?.toString() ?? this.items[costumerIndex].estado;
-			this.items[costumerIndex].cidade = costumer.cidade?.toString() ?? this.items[costumerIndex].cidade;
-			this.items[costumerIndex].rua = costumer.rua?.toString() ?? this.items[costumerIndex].rua;
-			this.items[costumerIndex].numero = costumer.numero?.toString() ?? this.items[costumerIndex].numero;
-			this.items[costumerIndex].nascimento = costumer.nascimento?.toString() ?? this.items[costumerIndex].nascimento;
+		if (customerIndex >= 0) {
+			this.items[customerIndex].nome = customer.nome?.toString() ?? this.items[customerIndex].nome;
+			this.items[customerIndex].email = customer.email?.toString() ?? this.items[customerIndex].email;
+			this.items[customerIndex].senha_hash = customer.senha_hash?.toString() ?? this.items[customerIndex].senha_hash;
+			this.items[customerIndex].cpf = customer.cpf?.toString() ?? this.items[customerIndex].cpf;
+			this.items[customerIndex].telefone = customer.telefone?.toString() ?? this.items[customerIndex].telefone;
+			this.items[customerIndex].cep = customer.cep?.toString() ?? this.items[customerIndex].cep;
+			this.items[customerIndex].estado = customer.estado?.toString() ?? this.items[customerIndex].estado;
+			this.items[customerIndex].cidade = customer.cidade?.toString() ?? this.items[customerIndex].cidade;
+			this.items[customerIndex].rua = customer.rua?.toString() ?? this.items[customerIndex].rua;
+			this.items[customerIndex].numero = customer.numero?.toString() ?? this.items[customerIndex].numero;
+			this.items[customerIndex].nascimento = customer.nascimento?.toString() ?? this.items[customerIndex].nascimento;
 		}
 
-		return Promise.resolve(this.items[costumerIndex]);
+		return Promise.resolve(this.items[customerIndex]);
 	}
 
-	async findByCPF(cpf: string): Promise<Costumer | null> {
-		const costumer = this.items.find((item) => item.cpf === cpf);
+	async findByCPF(cpf: string): Promise<Customer | null> {
+		const customer = this.items.find((item) => item.cpf === cpf);
 
-		if (!costumer) {
+		if (!customer) {
 			return null;
 		}
 
-		return costumer;
+		return customer;
 	}
 
-	async findByEmail(email: string): Promise<Costumer | null> {
-		const costumer = this.items.find((item) => item.email === email);
+	async findByEmail(email: string): Promise<Customer | null> {
+		const customer = this.items.find((item) => item.email === email);
 
-		if (!costumer) {
+		if (!customer) {
 			return null;
 		}
 
-		return costumer;
+		return customer;
 	}
 
-	async findById(id: string): Promise<Costumer | null> {
-		const costumer = this.items.find((item) => item.id === id);
+	async findById(id: string): Promise<Customer | null> {
+		const customer = this.items.find((item) => item.id === id);
 
-		if (!costumer) {
+		if (!customer) {
 			return null;
 		}
 
-		return costumer;
+		return customer;
 	}
 }

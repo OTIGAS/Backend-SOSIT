@@ -4,14 +4,14 @@ import { ResourceNotFoundError } from './errors/resource-not-found-error';
 import { ScheduleNotFoundError } from './errors/schedule-not-found-error';
 
 interface GetScheduleProfileUseCaseResponse {
-    schedules: Schedule[];
+	schedules: Schedule[];
 }
 
 export class GetAllScheduleProfileUseCase {
-	constructor(private costumersRepository: SchedulesRepository) { }
+	constructor(private customersRepository: SchedulesRepository) { }
 
 	async execute(): Promise<GetScheduleProfileUseCaseResponse> {
-		const schedules = await this.costumersRepository.getAll();
+		const schedules = await this.customersRepository.getAll();
 
 		if (!schedules) {
 			throw new ScheduleNotFoundError();

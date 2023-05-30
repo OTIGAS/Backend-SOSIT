@@ -7,7 +7,7 @@ import { env } from './env';
 
 import { ZodError } from 'zod';
 
-import { costumersRoutes } from './http/controllers/costumers/routes';
+import { customersRoutes } from './http/controllers/customers/routes';
 import { companiesRoutes } from './http/controllers/companies/routes';
 import { scheduleRoutes } from './http/controllers/schedules/routes';
 import { commitmentRoutes } from 'http/controllers/commitments/routes';
@@ -25,7 +25,7 @@ app.register(fastifyJwt, {
 	secret: env.JWT_SECRET
 });
 
-app.register(costumersRoutes);
+app.register(customersRoutes);
 app.register(companiesRoutes);
 app.register(scheduleRoutes);
 app.register(commitmentRoutes);

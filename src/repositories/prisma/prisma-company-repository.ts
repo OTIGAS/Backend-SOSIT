@@ -1,29 +1,8 @@
 import { prisma } from '@lib/prisma';
-import { Company, Prisma, Schedule } from '@prisma/client';
+import { Company, Prisma } from '@prisma/client';
 import { CompaniesRepository } from '../companies-repository';
 
 export class PrismaCompaniesRepository implements CompaniesRepository {
-
-	async findSchedulesByCompanyNomeFantasia(nomeFantasia: string) {
-		const companies = await prisma.company.findMany({
-			where: {
-				nome_fantasia: nomeFantasia,
-			},
-			include: {
-				schedule: true,
-			},
-		});
-
-		const schedules: Schedule[] = [];
-
-		companies.forEach((company) => {
-			if (company.schedule) {
-				schedules.push(...company.schedule);
-			}
-		});
-
-		return schedules;
-	}
 
 	async create(data: Prisma.CompanyCreateInput) {
 		const company = await prisma.company.create({
@@ -83,7 +62,6 @@ export class PrismaCompaniesRepository implements CompaniesRepository {
 
 		return companies;
 	}
-
 
 	async delete(companyId: string) {
 		const company = await prisma.company.delete({

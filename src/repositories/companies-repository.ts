@@ -1,4 +1,4 @@
-import { Prisma, Company, Schedule } from '@prisma/client';
+import { Prisma, Company } from '@prisma/client';
 
 export interface CompaniesRepository {
     create(data: Prisma.CompanyCreateInput): Promise<Company>
@@ -8,6 +8,4 @@ export interface CompaniesRepository {
     findByEmail(email: string): Promise<Company | null>
     findById(id: string): Promise<Company | null>
     getAll(): Promise<Company[]>
-
-    findSchedulesByCompanyNomeFantasia(nomeFantasia: string): Promise<Schedule[]>
 }

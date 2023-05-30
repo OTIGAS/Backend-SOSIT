@@ -1,22 +1,22 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 
-import { makeFetchCostumerCommitmentHistoryUseCase } from '@use-case/factories/make-fetch-costumer-commitment-history';
+import { makeFetchCustomerCommitmentHistoryUseCase } from '@use-case/factories/make-fetch-customer-commitment-history';
 
 export async function historyCustomer(request: FastifyRequest, response: FastifyReply) {
 
-	const costumerRegisterParamsSchema = z.object({
-		costumerId: z.string().uuid()
+	const customerRegisterParamsSchema = z.object({
+		customerId: z.string().uuid()
 	});
 
-	const requestData = { costumerId: request.user.sub };
+	const requestData = { customerId: request.user.sub };
 
-	const { costumerId } = costumerRegisterParamsSchema.parse(requestData);
+	const { customerId } = customerRegisterParamsSchema.parse(requestData);
 
 	try {
-		const fetchCustumerCommitmentUseCase = makeFetchCostumerCommitmentHistoryUseCase();
+		const fetchCustumerCommitmentUseCase = makeFetchCustomerCommitmentHistoryUseCase();
 
-		const { commitments } = await fetchCustumerCommitmentUseCase.execute({ costumerId });
+		const { commitments } = await fetchCustumerCommitmentUseCase.execute({ customerId });
 
 		return response.status(200).send({ commitments });
 

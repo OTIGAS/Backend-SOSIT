@@ -3,25 +3,25 @@ import { ScheduleNotFoundError } from './errors/schedule-not-found-error';
 import { Schedule } from '@prisma/client';
 
 interface DeleteScheduleUseCaseRequest {
-    scheduleId: string;
+	scheduleId: string;
 }
 
 interface DeleteScheduleUseCaseResponse {
-    schedule: Schedule;
+	schedule: Schedule;
 }
 
 export class DeleteScheduleUseCase {
-	constructor(private costumerRepository: SchedulesRepository) { }
+	constructor(private customerRepository: SchedulesRepository) { }
 
 	async execute({ scheduleId }: DeleteScheduleUseCaseRequest): Promise<DeleteScheduleUseCaseResponse> {
 
-		const schedule = await this.costumerRepository.findById(scheduleId);
+		const schedule = await this.customerRepository.findById(scheduleId);
 
 		if (!schedule) {
 			throw new ScheduleNotFoundError();
 		}
 
-		await this.costumerRepository.delete(scheduleId);
+		await this.customerRepository.delete(scheduleId);
 
 		return { schedule };
 	}

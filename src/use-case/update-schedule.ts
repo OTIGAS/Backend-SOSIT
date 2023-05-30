@@ -37,10 +37,10 @@ export class UpdateScheduleUseCase {
 			throw new ResourceNotFoundError();
 		}
 
-		const costumerWithSameName = await this.schedulesRepository.findByNomeAndCompany(nome, companyId);
+		const customerWithSameName = await this.schedulesRepository.findByNomeAndCompany(nome, companyId);
 
-		if (costumerWithSameName) {
-			if (costumerWithSameName?.id != id) {
+		if (customerWithSameName) {
+			if (customerWithSameName?.id != id) {
 				throw new ScheduleAlreadyExistsError();
 			}
 		}
