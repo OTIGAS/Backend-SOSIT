@@ -15,6 +15,12 @@ export async function register(request: FastifyRequest, response: FastifyReply) 
 		servico: z.string(),
 		descricao: z.string(),
 		dias_semana: z.string().array(),
+		horarios_seg: z.string().array(),
+		horarios_ter: z.string().array(),
+		horarios_qua: z.string().array(),
+		horarios_qui: z.string().array(),
+		horarios_sex: z.string().array(),
+		horarios_sab: z.string().array(),
 	});
 
 	const requestData = { companyId: request.user.sub };
@@ -26,6 +32,12 @@ export async function register(request: FastifyRequest, response: FastifyReply) 
 		servico,
 		descricao,
 		dias_semana,
+		horarios_seg,
+		horarios_ter,
+		horarios_qua,
+		horarios_qui,
+		horarios_sex,
+		horarios_sab,
 	} = scheduleRegisterBodySchema.parse(request.body);
 
 	try {
@@ -38,6 +50,12 @@ export async function register(request: FastifyRequest, response: FastifyReply) 
 			descricao,
 			dias_semana,
 			companyId,
+			horarios_seg,
+			horarios_ter,
+			horarios_qua,
+			horarios_qui,
+			horarios_sex,
+			horarios_sab,
 		});
 
 	} catch (err) {
