@@ -15,7 +15,7 @@ import { commitmentRoutes } from 'http/controllers/commitments/routes';
 export const app = fastify();
 
 app.register(cors, {
-	origin: 'http://localhost:5173',
+	origin: 'http://localhost:3001',
 	methods: 'GET,OPTIONS,HEAD,PUT,PATCH,POST,DELETE',
 	allowedHeaders: 'X-CSRF-Token, X-Requested-With, Content-Type, Authorization',
 	credentials: true,

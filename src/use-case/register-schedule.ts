@@ -8,6 +8,13 @@ interface ScheduleUseCaseRequest {
 	descricao: string;
 	dias_semana: string[];
 
+	horarios_seg: string[];
+	horarios_ter: string[];
+	horarios_qua: string[];
+	horarios_qui: string[];
+	horarios_sex: string[];
+	horarios_sab: string[];
+
 	companyId: string;
 }
 
@@ -19,7 +26,17 @@ export class RegisterScheduleUseCase {
 	constructor(private schedulesRepository: SchedulesRepository) { }
 
 	async execute({
-		nome, servico, descricao, dias_semana, companyId
+		nome, 
+		servico, 
+		descricao, 
+		dias_semana, 
+		horarios_seg,
+		horarios_ter,
+		horarios_qua,
+		horarios_qui,
+		horarios_sex,
+		horarios_sab,
+		companyId
 	}: ScheduleUseCaseRequest): Promise<ScheduleUseCaseResponse> {
 
 		const customerWithSameName = await this.schedulesRepository.findByNomeAndCompany(nome, companyId);
@@ -33,6 +50,14 @@ export class RegisterScheduleUseCase {
 			servico: servico,
 			descricao: descricao,
 			dias_semana: dias_semana,
+
+			horarios_seg: horarios_seg,
+			horarios_ter: horarios_ter,
+			horarios_qua: horarios_qua,
+			horarios_qui: horarios_qui,
+			horarios_sex: horarios_sex,
+			horarios_sab: horarios_sab,
+		
 			company_id: companyId
 		});
 
