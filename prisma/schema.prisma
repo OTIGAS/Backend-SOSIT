@@ -95,3 +95,16 @@ model Commitment {
   schedule    Schedule @relation(fields: [schedule_id], references: [id])
   schedule_id String
 }
+
+modal WaitingList {
+  id String @id @default(uuid())
+
+  customer    Customer @relation(fields: [customer_id], references: [id])
+  customer_id String
+
+  schedule    Schedule @relation(fields: [schedule_id], references: [id])
+  schedule_id String
+
+  title String
+  descricao String
+}
