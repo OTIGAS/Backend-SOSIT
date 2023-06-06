@@ -9,8 +9,6 @@ export async function getByService(request: FastifyRequest, response: FastifyRep
 
 	const { query } = getByServiceScheduleQuerySchema.parse(request.body);
 
-	console.log(query);
-
 	try {
 		const getByServiceScheduleUseCase = makeGetByServiceScheduleUseCase();
 
